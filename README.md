@@ -18,3 +18,27 @@ git commit -m "Frase que deseja salvar o commit"
 git push origin Nome_da_Branch
 ```
 Depois envie suas alterações para a branch main
+- Volte para a branch main
+```
+git checkout main
+```
+- Envie suas alterações
+```
+git merge nome-da-sua-branch
+```
+- Por fim salve no repositório do gitHub
+```
+git add .
+git commit -m "Frase que deseja salvar o commit"
+git push
+```
+### IMPORTANTE
+Sempre que for iniciar um trabalho na sua branch garanta que ela esteja atualizada usando o mesmo comando de merge mas agora puchando as alterações da main para sua branch
+- Vá para sua branch
+```
+git checkout Nome_da_Branch
+```
+- Busque novas alterações
+```
+git merge nain
+```
