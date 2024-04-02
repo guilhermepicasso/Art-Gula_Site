@@ -5,10 +5,10 @@ let con;
 
 try {
     con = await mysql.createConnection({
-        host: 'bd-desen-web.mysql.database.azure.com',
-        user: 'agg',
-        password: '1a2b3cABC',
-        database: 'artgula',
+        host: '',
+        user: '',
+        password: '',
+        database: '',
         ssl: {
             // Configurações SSL
             rejectUnauthorized: true // Rejeitar conexões de servidores não autorizados
