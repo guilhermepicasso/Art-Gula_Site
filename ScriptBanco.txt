@@ -1,0 +1,46 @@
+CREATE database artgula;
+USE artgula;
+
+create table categoria(
+	idCategoria int auto_increment primary key,
+    nomeCategoria varchar(50) not null
+);
+
+create table subcategoria(
+	idSubcategoria int auto_increment primary key,
+    nomeSubcategoria varchar(50),
+    categoriaId int,
+    foreign key (categoriaId) references categoria(idCategoria)
+);
+
+create table produto(
+	idProduto int auto_increment primary key,
+    nomeProduto varchar(50) not null,
+    descricaoProduto varchar(500),
+    valorProduto decimal(10,2),
+    pesoProduto varchar(10),
+    imagem varchar(255) not null,
+    subcategoriaProduto int,
+    FOREIGN KEY (subcategoriaProduto) REFERENCES subcategoria(idSubcategoria)
+);
+
+create table Imagem(
+	idImagem int auto_increment primary key,
+    titulo varchar(20),
+    nomeImagem varchar(50),
+    subcategoriaImagem int,
+    foreign key (subcategoriaImagem) references subcategoria(idSubcategoria)
+);
+
+create table eventos(
+	idEventos int auto_increment primary key,
+    tituloEvento varchar(50) not null,
+    dataInicial date,
+    dataFinal date,
+    horaInicio time,
+    horaFim time,
+    valorEvento decimal(10,2),
+    descricaoEvento varchar(500),
+    imagem varchar(255) not null
+);
+

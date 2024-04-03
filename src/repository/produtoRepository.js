@@ -6,9 +6,9 @@ export async function salvarProduto(produto) {
             nomeProduto, 
             descricaoProduto, 
             valorProduto, 
-            pesoProduto, 
-            subcategoriaProduto, 
-            imagem
+            pesoProduto,
+            imagem,
+            subcategoriaProduto 
             )
         values (?, ?, ?, ?, ?, ?)
         `
