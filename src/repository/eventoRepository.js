@@ -40,6 +40,25 @@ export async function listarEventos() {
     return linhas;
 }
 
+// metodo para listar apenas um evento 
+export async function listarUmEvento(id) {
+    try {
+        let comando = `
+    SELECT * FROM evento WHERE idEvento = ?`;
+
+    let resp = await con.query(comando, [id]);
+    let linhas = resp[0];
+
+    if (resp[0].affectedRows !== 1) {
+        throw new Error('Evento não encontrado');
+    }
+
+    return linhas;
+    } catch (error) {
+        throw error;
+    }
+}
+
 export async function editarEvento(id, evento) {
     try {
         let comando = `

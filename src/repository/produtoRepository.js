@@ -73,6 +73,29 @@ export async function listarProdutos() {
     return linhas;
 }
 
+// metodo para listar apenas um produto 
+export async function listarUmProduto(id) {
+    try {
+        let comando = `
+      SELECT * FROM produto WHERE idProduto = ?
+    `;
+
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+
+        if (resp[0].affectedRows !== 1) {
+            throw new Error('Produto não encontrado');
+        }
+
+        return linhas;
+    } catch (error) {
+        throw error;
+
+    }
+
+}
+
+
 export async function deletarProduto(id, produto) {
     try {
         let comando = `

@@ -1,10 +1,17 @@
-import {salvarEvento, editarEvento,listarEventos,deletarEvento} from "../repository/eventoRepository.js"
+import {salvarEvento, editarEvento,listarEventos,deletarEvento, listarUmEvento} from "../repository/eventoRepository.js"
 
 import { Router } from "express";
 let servidor = Router();
 
 servidor.get('/evento', async (req, resp) => {
     let listaEventos = await listarEventos();
+    resp.send(listaEventos);
+})
+
+// novo get 
+servidor.get('/evento/:id', async (req, resp) => {
+    const id = req.params.id;
+    let listaEventos = await listarUmEvento(id);
     resp.send(listaEventos);
 })
 
