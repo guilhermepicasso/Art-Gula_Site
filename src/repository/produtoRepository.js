@@ -73,6 +73,23 @@ export async function listarProdutos() {
     return linhas;
 }
 
+export async function listarProdutosSubcategorias(id) {
+    try {
+        let comando = "SELECT idProduto FROM produtos WHERE idSubcategoria = ?"
+
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+
+        if (resp[0].affectedRows !== 1) {
+            throw new Error('Produtos não encontrados');
+        }
+
+        return linhas;
+    } catch (error) {
+        throw error;
+    }
+}
+
 // metodo para listar apenas um produto 
 export async function listarUmProduto(id) {
     try {

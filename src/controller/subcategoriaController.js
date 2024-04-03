@@ -1,5 +1,5 @@
 import { salvarSubcategoria,listarSucategorias,editarSubcategoria,deletarSubcategoria } from "../repository/subcategoriaRepository.js";
-
+import {listarProdutosSubcategorias, deletarProduto} from "../repository/produtoRepository.js"
 import { Router } from "express";
 let servidor = Router();
 
@@ -32,6 +32,12 @@ servidor.put('/subcategoria/:id', async (req, res) => {
 servidor.delete('/subcategoria/:id', async (req, res) => {
     try {
         const id = req.params.id;
+        const produtosSubcategoria = await listarProdutosSubcategorias(id);
+
+        for (const produto of produtosSubcategoria) {
+            await deletarProduto(produto.idProduto, produto);
+        }
+
         await deletarSubcategoria(id);
         res.status(200).json("subcategoria excluido com sucesso!");
     } catch (error) {

@@ -59,19 +59,14 @@ export async function editarSubcategoria(id, subcategoria) {
 //verifica o DELETE das tabelas relacionadas
 export async function deletarSubcategoria(id, subcategoria) {
     try {
-        // Acresentar depois DELETE FROM imagem WHERE subcategoriaImagem = ?
+        
         let comando = `
-            DELETE FROM produto WHERE subcategoriaProduto = ?
+            DELETE FROM subcategoria WHERE idSubcategoria = ?
         `;
 
-        let respProduto = await con.query(comando, [id]);
+        let resp = await con.query(comando, [id]);
 
-        comando = `DELETE FROM subcategoria WHERE idSubcategoria = ?`
-
-        let respSubcategoria = await con.query(comando,[id]);
-
-
-        if (respProduto[0].affectedRows !== 1 || respSubcategoria[0].affectedRows !== 1  ) {
+        if (resp[0].affectedRows !== 1) {
             throw new Error('subcategoria não DELETADA');
         }
 
