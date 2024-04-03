@@ -14,20 +14,20 @@ servidor.post('/subcategoria', async (req, resp) => {
     resp.send(subcategoriaInserido);
 });
 
-servidor.put('/subcategoria/:id', async (req, res) => {
+servidor.put('/subcategoria/:id', async (req, resp) => {
     try {
         const id = req.params.id;
         const subcategoria = req.body;
 
         const subcategoriaAtualizado = await editarSubcategoria(id, subcategoria);
 
-        res.status(200).json(subcategoriaAtualizado);
+        resp.status(200).json(subcategoriaAtualizado);
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao atualizar a subcategoria', error: error.message });
+        resp.status(500).json({ message: 'Erro ao atualizar a subcategoria', error: error.message });
     }
 });
 
-servidor.delete('/subcategoria/:id', async (req, res) => {
+servidor.delete('/subcategoria/:id', async (req, resp) => {
     try {
         const id = req.params.id;
         const produtosSubcategoria = await listarProdutosSubcategorias(id);
@@ -37,9 +37,9 @@ servidor.delete('/subcategoria/:id', async (req, res) => {
         }
 
         await deletarSubcategoria(id);
-        res.status(200).json("subcategoria excluido com sucesso!");
+        resp.status(200).json("subcategoria excluido com sucesso!");
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao excluir a subcategoria', error: error.message });
+        resp.status(500).json({ message: 'Erro ao excluir a subcategoria', error: error.message });
     }
 });
 

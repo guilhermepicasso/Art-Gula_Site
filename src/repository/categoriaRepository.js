@@ -2,7 +2,7 @@ import con from "./conection.js";
 
 export async function salvarCategoria(categoria) {
     let comando = `
-    insert into subcategoria(
+    insert into categoria(
         nomeCategoria,
     )
     values (?)

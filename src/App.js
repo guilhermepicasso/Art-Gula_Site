@@ -2,6 +2,7 @@ import produtoController from "../src/controller/produtoController.js"
 import eventoController from "../src/controller/eventoController.js"
 import subcategoriaController from "../src/controller/subcategoriaController.js"
 import categoriaController from "../src/controller/categoriaController.js";
+import imagemController from "../src/controller/imagemController.js";
 
 import 'dotenv/config'
 import express from 'express'
@@ -16,6 +17,7 @@ servidor.use(produtoController);
 servidor.use(eventoController);
 servidor.use(subcategoriaController);
 servidor.use(categoriaController);
+servidor.use(imagemController);
 
 let port = process.env.PORT;
 servidor.listen(port, () => console.log("API SUBIU!"));

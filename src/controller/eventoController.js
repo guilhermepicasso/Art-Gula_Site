@@ -21,26 +21,26 @@ servidor.post('/evento', async (req, resp) => {
     resp.send(eventoInserido);
 });
 
-servidor.put('/evento/:id', async (req, res) => {
+servidor.put('/evento/:id', async (req, resp) => {
     try {
         const id = req.params.id;
         const evento = req.body;
 
         const eventoAtualizado = await editarEvento(id, evento);
 
-        res.status(200).json(eventoAtualizado);
+        resp.status(200).json(eventoAtualizado);
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao atualizar o evento', error: error.message });
+        resp.status(500).json({ message: 'Erro ao atualizar o evento', error: error.message });
     }
 });
 
-servidor.delete('/evento/:id', async (req, res) => {
+servidor.delete('/evento/:id', async (req, resp) => {
     try {
         const id = req.params.id;
         await deletarEvento(id);
-        res.status(200).json("evento excluido com sucesso!");
+        resp.status(200).json("evento excluido com sucesso!");
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao excluir o evento', error: error.message });
+        resp.status(500).json({ message: 'Erro ao excluir o evento', error: error.message });
     }
 });
 

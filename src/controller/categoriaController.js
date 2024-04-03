@@ -14,21 +14,21 @@ servidor.post('/categoria', async (req, resp) => {
     resp.send(categoriaInserido);
 });
 
-servidor.put('/categoria/:id', async (req, res) => {
+servidor.put('/categoria/:id', async (req, resp) => {
     try {
         const id = req.params.id;
         const categoria = req.body;
 
         const categoriaAtualizado = await editarCategoria(id, categoria);
 
-        res.status(200).json(categoriaAtualizado);
+        resp.status(200).json(categoriaAtualizado);
     } catch (error) {
-        res.status(500).json({ message: 'Erro ao atualizar a subcategoria', error: error.message });
+        resp.status(500).json({ message: 'Erro ao atualizar a categoria', error: error.message });
     }
 });
 
 //Terminar Delete categoria
-servidor.delete('/subcategoria/:id', async (req, res) => {
+servidor.delete('/categoria/:id', async (req, resp) => {
     try {
         
     } catch (error) {
