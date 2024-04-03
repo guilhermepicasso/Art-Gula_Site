@@ -8,8 +8,6 @@ servidor.get('/subcategoria', async (req, resp) => {
     resp.send(listaSucategorias);
 });
 
-//GET da lista de subcategorias de uma categoria
-
 servidor.post('/subcategoria', async (req, resp) => {
     let subcategoria = req.body;
     let subcategoriaInserido = await salvarSubcategoria(subcategoria);
