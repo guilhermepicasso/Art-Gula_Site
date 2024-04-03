@@ -13,13 +13,13 @@ servidor.get('/evento/:id', async (req, resp) => {
     const id = req.params.id;
     let listaEventos = await listarUmEvento(id);
     resp.send(listaEventos);
-})
+});
 
 servidor.post('/evento', async (req, resp) => {
     let evento = req.body;
     let eventoInserido = await salvarEvento(evento);
     resp.send(eventoInserido);
-})
+});
 
 servidor.put('/evento/:id', async (req, res) => {
     try {
