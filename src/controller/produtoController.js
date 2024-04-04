@@ -1,4 +1,4 @@
-import { salvarProduto, editarProduto, listarProdutos, deletarProduto } from "../repository/produtoRepository.js";
+import { salvarProduto, editarProduto, listarProdutos, deletarProduto, listarProduto } from "../repository/produtoRepository.js";
 
 import { Router } from "express";
 let servidor = Router();
@@ -6,6 +6,12 @@ let servidor = Router();
 servidor.get('/produto', async (req, resp) => {
     let listaProdutos = await listarProdutos();
     resp.send(listaProdutos);
+})
+
+servidor.get('/produto/:id', async (req, resp) => {
+    const id = req.params.id;
+    let listaProduto = await listarProduto(id);
+    resp.send(listaProduto);
 })
 
 servidor.post('/produto', async (req, resp) => {

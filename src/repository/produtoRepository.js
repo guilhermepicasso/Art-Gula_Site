@@ -6,9 +6,9 @@ export async function salvarProduto(produto) {
             nomeProduto, 
             descricaoProduto, 
             valorProduto, 
-            pesoProduto,
-            imagem,
-            subcategoriaProduto 
+            pesoProduto, 
+            subcategoriaProduto,
+            imagem
             )
         values (?, ?, ?, ?, ?, ?)
         `
@@ -34,7 +34,7 @@ export async function editarProduto(id, produto) {
             descricaoProduto = ?, 
             valorProduto = ?, 
             pesoProduto = ?, 
-            subcategoriaProduto = ?, 
+            subcategoriaProduto = ?,
             imagem = ?
             WHERE idProduto = ?
         `;
@@ -62,12 +62,16 @@ export async function editarProduto(id, produto) {
 }
 
 export async function listarProdutos() {
-    let comando = `
-      select *
-        from produto
-    `
+    let comando = `select * from produto`;
+    let resp = await con.query(comando, []);;
+    let linhas = resp[0];
 
-    let resp = await con.query(comando, []);
+    return linhas;
+}
+
+export async function listarProduto(id) {
+    let comando = `select * from produto where idProduto = ?`
+    let resp = await con.query(comando, [id]);
     let linhas = resp[0];
 
     return linhas;
