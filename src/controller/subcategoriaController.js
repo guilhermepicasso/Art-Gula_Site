@@ -1,11 +1,17 @@
-import { salvarSubcategoria,listarSucategorias,editarSubcategoria,deletarSubcategoria } from "../repository/subcategoriaRepository.js";
-import {listarProdutosSubcategorias, deletarProduto} from "../repository/produtoRepository.js"
+import { salvarSubcategoria,listarSucategorias,editarSubcategoria,deletarSubcategoria, listarProdutosSubcategoria } from "../repository/subcategoriaRepository.js";
+import {deletarProduto} from "../repository/produtoRepository.js"
 import { Router } from "express";
 let servidor = Router();
 
 servidor.get('/subcategoria', async (req, resp) => {
     let listaSucategorias = await listarSucategorias();
     resp.send(listaSucategorias);
+});
+
+servidor.get('/produtosDaSubcategoria/:id', async (req, resp) => {
+    let subcategoria = req.params.id;
+    let listaProdutos = await listarProdutosSubcategoria(subcategoria);
+    resp.send(listaProdutos);
 });
 
 servidor.post('/subcategoria', async (req, resp) => {
@@ -30,7 +36,7 @@ servidor.put('/subcategoria/:id', async (req, resp) => {
 servidor.delete('/subcategoria/:id', async (req, resp) => {
     try {
         const id = req.params.id;
-        const produtosSubcategoria = await listarProdutosSubcategorias(id);
+        const produtosSubcategoria = await listarProdutosSubcategoria(id);
 
         for (const produto of produtosSubcategoria) {
             await deletarProduto(produto.idProduto, produto);
