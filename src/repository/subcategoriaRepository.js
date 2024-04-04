@@ -46,8 +46,6 @@ export async function listarSucategorias() {
 
 }
 
-//listar todas subcategorias de uma categoria(falta)
-
 export async function editarSubcategoria(id, subcategoria) {
     try {
         let comando = `

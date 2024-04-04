@@ -4,7 +4,7 @@
   "description": "Repositório destinado a construção do site para a aula de Desenvolvimento WEB do 4º semestre do curso de TADS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon ./src/App.js"
   },
   "type": "module",
@@ -17,5 +17,10 @@
     "express": "^4.19.2",
     "mysql2": "^3.9.3",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.0",
+    "mocha": "^10.4.0",
+    "supertest": "^6.3.4"
   }
 }
