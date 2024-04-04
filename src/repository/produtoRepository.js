@@ -1,7 +1,8 @@
 import con from "./conection.js";
 
 export async function salvarProduto(produto) {
-    let comando = `
+    try {
+        let comando = `
         insert into produto (
             nomeProduto, 
             descricaoProduto, 
@@ -12,18 +13,27 @@ export async function salvarProduto(produto) {
             )
         values (?, ?, ?, ?, ?, ?)
         `
-    let resp = await con.query(comando, [
-        produto.nomeProduto,
-        produto.descricaoProduto,
-        produto.valorProduto,
-        produto.pesoProduto,
-        produto.subcategoriaProduto,
-        produto.imagem
-    ]);
-    let info = resp[0];
+        let resp = await con.query(comando, [
+            produto.nomeProduto,
+            produto.descricaoProduto,
+            produto.valorProduto,
+            produto.pesoProduto,
+            produto.subcategoriaProduto,
+            produto.imagem
+        ]);
+        let info = resp[0];
 
-    produto.id = info.insertId;
-    return produto;
+        produto.id = info.insertId;
+
+        if (resp[0].affectedRows !== 1) {
+            throw new Error('Erro ao cadastrar produto', Error);
+        }
+
+        return produto;
+    } catch (error) {
+        throw error;
+    }
+
 }
 
 export async function editarProduto(id, produto) {
@@ -51,7 +61,7 @@ export async function editarProduto(id, produto) {
 
 
         if (resp[0].affectedRows !== 1) {
-            throw new Error('Produto não encontrado ou não atualizado');
+            throw new Error('Produto não atualizado');
         }
 
         return produto;
@@ -62,20 +72,45 @@ export async function editarProduto(id, produto) {
 }
 
 export async function listarProdutos() {
-    let comando = `select * from produto`;
-    let resp = await con.query(comando, []);;
-    let linhas = resp[0];
+    try {
+        let comando = `select * from produto`
 
-    return linhas;
+        let resp = await con.query(comando, []);
+        let linhas = resp[0];
+
+        if (linhas === 0) {
+            throw new Error('Nenhum produto encontrado!');
+        }
+
+        return linhas;
+    } catch (error) {
+        throw error;
+    }
+
 }
 
-export async function listarProduto(id) {
-    let comando = `select * from produto where idProduto = ?`
-    let resp = await con.query(comando, [id]);
-    let linhas = resp[0];
+// metodo para listar apenas um produto 
+export async function listarUmProduto(id) {
+    try {
+        let comando = `
+      SELECT * FROM produto WHERE idProduto = ?
+    `;
 
-    return linhas;
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+
+        if (linhas === 0) {
+            throw new Error('Produto não encontrado!');
+        }
+
+        return linhas;
+    } catch (error) {
+        throw error;
+
+    }
+
 }
+
 
 export async function deletarProduto(id, produto) {
     try {
