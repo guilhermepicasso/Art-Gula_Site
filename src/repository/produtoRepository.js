@@ -1,6 +1,6 @@
 import con from "./conection.js";
 
-export async function salvarProduto(produto) {
+export async function salvarProduto(subcategoria, produto) {
     try {
         let comando = `
         insert into produto (
@@ -13,12 +13,13 @@ export async function salvarProduto(produto) {
             )
         values (?, ?, ?, ?, ?, ?)
         `
+
         let resp = await con.query(comando, [
             produto.nomeProduto,
             produto.descricaoProduto,
             produto.valorProduto,
             produto.pesoProduto,
-            produto.subcategoriaProduto,
+            subcategoria,
             produto.imagem
         ]);
         let info = resp[0];
@@ -26,24 +27,48 @@ export async function salvarProduto(produto) {
         produto.id = info.insertId;
 
         if (resp[0].affectedRows !== 1) {
-            throw new Error('Erro ao cadastrar produto', Error);
+            throw new Error('Erro ao cadastrar produto');
         }
 
         return produto;
     } catch (error) {
-        throw error;
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
 
 }
 
-export async function editarProduto(id, produto) {
+export async function listarProdutos() {
+    try {
+        let comando = `select * from produto`
+        let resp = await con.query(comando, []);
+        let linhas = resp[0];
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+};
+
+// metodo para listar apenas um produto 
+export async function listarUmProduto(id) {
+    try {
+        let comando = `SELECT * FROM produto WHERE idProduto = ?`;
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+
+};
+
+export async function editarProduto(subacategoria, id, produto) {
     try {
         let comando = `
             UPDATE produto SET 
             nomeProduto = ?, 
             descricaoProduto = ?, 
             valorProduto = ?, 
-            pesoProduto = ?, 
+            pesoProduto = ?,
             subcategoriaProduto = ?,
             imagem = ?
             WHERE idProduto = ?
@@ -54,80 +79,32 @@ export async function editarProduto(id, produto) {
             produto.descricaoProduto,
             produto.valorProduto,
             produto.pesoProduto,
-            produto.subcategoriaProduto,
+            subacategoria,
             produto.imagem,
             id
         ]);
 
-
         if (resp[0].affectedRows !== 1) {
-            throw new Error('Produto não atualizado');
+            throw new Error('Produto não encontrado ou não atualizado!');
         }
 
         return produto;
     } catch (error) {
-        // Trate o erro aqui conforme necessário
-        throw error;
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
-}
-
-export async function listarProdutos() {
-    try {
-        let comando = `select * from produto`
-
-        let resp = await con.query(comando, []);
-        let linhas = resp[0];
-
-        if (linhas === 0) {
-            throw new Error('Nenhum produto encontrado!');
-        }
-
-        return linhas;
-    } catch (error) {
-        throw error;
-    }
-
-}
-
-// metodo para listar apenas um produto 
-export async function listarUmProduto(id) {
-    try {
-        let comando = `
-      SELECT * FROM produto WHERE idProduto = ?
-    `;
-
-        let resp = await con.query(comando, [id]);
-        let linhas = resp[0];
-
-        if (linhas === 0) {
-            throw new Error('Produto não encontrado!');
-        }
-
-        return linhas;
-    } catch (error) {
-        throw error;
-
-    }
-
 }
 
 
 export async function deletarProduto(id, produto) {
     try {
-        let comando = `
-            DELETE FROM produto WHERE idProduto = ?
-        `;
-
+        let comando = `DELETE FROM produto WHERE idProduto = ?`;
         let resp = await con.query(comando, [id]);
-
 
         if (resp[0].affectedRows !== 1) {
             throw new Error('Produto não DELETADO');
         }
-
         return produto;
     } catch (error) {
-        // Trate o erro aqui conforme necessário
-        throw error;
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
 }

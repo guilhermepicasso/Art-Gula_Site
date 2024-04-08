@@ -9,7 +9,7 @@ export async function salvarEvento(evento) {
                 dataFinal,
                 horaInicio,
                 horaFim,
-                descricaoEvento,
+                descricaoEvento,    
                 imagem
             )
             values (?,?,?,?,?,?,?)
@@ -34,7 +34,7 @@ export async function salvarEvento(evento) {
 
         return evento;
     } catch (error) {
-        return error.message === 'Erro ao criar evento' ? 'Erro ao criar evento!' : 'Erro no método salvarEvento: ' + error.message;
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
 }
 

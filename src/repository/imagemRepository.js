@@ -62,10 +62,7 @@ export async function editarImagem(id, imagem) {
 export async function deletarImagem(id, imagem) {
     try {
         
-        let comando = `
-            DELETE FROM imagem WHERE idImagem = ?
-        `;
-
+        let comando = `DELETE FROM imagem WHERE idImagem = ?`;
         let resp = await con.query(comando, [id]);
 
         if (resp[0].affectedRows !== 1) {

@@ -1,32 +1,73 @@
 import con from "./conection.js";
 
-export async function salvarCategoria(categoria) {
-    let comando = `
-    insert into categoria(
-        nomeCategoria,
-    )
-    values (?)
-    `;
+function verificarConexao() {
+    if (!con) {
+        throw new Error('Sem conexão com o banco de dados!');
+    }
+}
 
-    let resp = await con.query(comando, [
-        categoria.nomeCategoria
-    ]);
-    let info = resp[0];
-    categoria.id = info.insertId;
-    return categoria;
+export async function salvarCategoria(categoria) {
+    try {
+        verificarConexao();
+        let comando = `insert into categoria(nomeCategoria) value (?)`;
+
+        let resp = await con.query(comando, [
+            categoria.nomeCategoria
+        ]);
+        let info = resp[0];
+        categoria.id = info.insertId;
+
+        if (resp[0].affectedRows !== 1) {
+            throw new Error('Categoria não cadastrada!');
+        }
+        return categoria;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+
 }
 
 export async function listarCategorias() {
-    let comando = `SELECT * FROM categoria`;
+    try {
+        verificarConexao();
+        let comando = `SELECT * FROM categoria`;
+        let resp = await con.query(comando, []);
+        let linhas = resp[0];
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
 
-    let resp = await con.query(comando, []);
-    let linhas = resp[0];
-
-    return linhas;
 }
 
-export async function editarCategoria(id,categoria) {
+export async function listarCategoria(id) {
     try {
+        verificarConexao();
+        let comando = `SELECT * FROM categoria WHERE idCategoria = ?`;
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+
+}
+
+export async function listarSubcategoriasCategoria(id) {
+    try {
+        verificarConexao();
+        let comando = "SELECT * FROM subcategoria WHERE categoriaId = ?"
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+}
+
+export async function editarCategoria(id, categoria) {
+    try {
+        verificarConexao();
         let comando = `
         UPDATE categoria SET
         nomeCategoria = ?
@@ -39,20 +80,21 @@ export async function editarCategoria(id,categoria) {
         ]);
 
         if (resp[0].affectedRows !== 1) {
-            throw new Error('categoria não encontrado ou não atualizado');
+            throw new Error('Categoria não encontrado ou não atualizada!');
         }
         return categoria;
 
     } catch (error) {
-        throw error;
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
 }
 
 //verificar relacionamento antes da requisição
-export async function deletarCategoria(id,categoria) {
+export async function deletarCategoria(id, categoria) {
     try {
+        verificarConexao();
         let comando = `DELETE FROM categoria WHERE idCategoria = ?`;
-        let resp = await con.query(comando,[id]);
+        let resp = await con.query(comando, [id]);
 
         if (resp[0].affectedRows !== 1) {
             throw new Error('categoria não DELETADA');
@@ -60,7 +102,7 @@ export async function deletarCategoria(id,categoria) {
 
         return categoria;
     } catch (error) {
-        throw error;
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
-    
+
 }
