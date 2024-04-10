@@ -1,7 +1,28 @@
-import { salvarEvento, editarEvento, listarEventos, deletarEvento, listarUmEvento } from "../repository/eventoRepository.js"
+import multer from "multer";
+
+import { salvarEvento, editarEvento, listarEventos, deletarEvento, listarUmEvento ,alterarImagem} from "../repository/eventoRepository.js"
 
 import { Router } from "express";
 let servidor = Router();
+
+const upload = multer({ dest: 'storage/eventos' })
+
+servidor.put('/evento/imagem/:id', upload.single('imgEvento'), async (req, resp) => {
+    try {
+        let id = req.params.id;
+        let imagem = req.file;
+
+        let linhasAfetadas = await alterarImagem(id,imagem);
+        if (linhasAfetadas == 0) {
+            resp.status(404).send();
+        }else{
+            resp.status(202).send();
+        }
+    } catch (error) {
+        resp.status(500).json({ error: error.message });
+    }
+
+})
 
 servidor.post('/evento', async (req, resp) => {
     try {

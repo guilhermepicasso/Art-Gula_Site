@@ -1,9 +1,29 @@
-import { salvarProduto, editarProduto, listarProdutos, deletarProduto, listarUmProduto, listarProdutoGrupo, listarProdutosSubcategoria } from "../repository/produtoRepository.js";
+import multer from "multer";
+
+import { salvarProduto, editarProduto, listarProdutos, deletarProduto, listarUmProduto, listarProdutoGrupo, listarProdutosSubcategoria,alterarImagem } from "../repository/produtoRepository.js";
 import { listarSucategoria } from "../repository/subcategoriaRepository.js";
 
 import { Router } from "express";
-
 let servidor = Router();
+
+const upload = multer({ dest: 'storage/produtos' });
+
+servidor.put('/produto/imagem/:id', upload.single('imgProduto'), async (req, resp) => {
+    try {
+        let id = req.params.id;
+        let imagem = req.file;
+
+        let linhasAfetadas = await alterarImagem(id, imagem);
+        if (linhasAfetadas == 0) {
+            resp.status(404).send();
+        } else {
+            resp.status(202).send();
+        }
+    } catch (error) {
+        resp.status(500).json({ error: error.message });
+    }
+
+})
 
 servidor.post('/produto/:subcategoria', async (req, resp) => {
     try {

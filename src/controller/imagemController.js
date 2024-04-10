@@ -1,8 +1,29 @@
-import { salvarImagem, listarImagems, editarImagem, deletarImagem, buscarImagem, listarImagensSubcategoria } from "../repository/imagemRepository.js";
+import multer from "multer";
+
+import { salvarImagem, listarImagems, editarImagem, deletarImagem, buscarImagem, listarImagensSubcategoria, alterarImagem } from "../repository/imagemRepository.js";
 
 import { Router } from "express";
 import { listarSucategoria } from "../repository/subcategoriaRepository.js";
 let servidor = Router();
+
+const upload = multer({ dest: 'storage/imagensCarrosel' })
+
+servidor.put('/imagem/imagensCarrosel/:id', upload.single('imgCarrosel'), async (req, resp) => {
+    try {
+        let id = req.params.id;
+        let imagem = req.file;
+
+        let linhasAfetadas = await alterarImagem(id,imagem);
+        if (linhasAfetadas == 0) {
+            resp.status(404).send();
+        }else{
+            resp.status(202).send();
+        }
+    } catch (error) {
+        resp.status(500).json({ error: error.message });
+    }
+
+})
 
 servidor.post('/imagem/:subcategoria', async (req, resp) => {
     try {

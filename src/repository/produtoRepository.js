@@ -135,3 +135,21 @@ export async function deletarProduto(id, produto) {
         throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
 }
+
+export async function alterarImagem(id, caminho) {
+    try {
+        let comando = `
+      update produto
+         set imagem = ?
+       where idProduto = ?
+    `
+  
+    let resp = await con.query(comando, [caminho, id]);
+    let info = resp[0];
+  
+    return info.affectedRows;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+    
+  }
