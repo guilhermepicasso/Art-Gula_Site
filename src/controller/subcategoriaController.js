@@ -1,4 +1,4 @@
-import { salvarSubcategoria, listarSucategorias, editarSubcategoria, deletarSubcategoria, listarProdutosSubcategoria, listarSucategoria } from "../repository/subcategoriaRepository.js";
+import { salvarSubcategoria, listarSucategorias, editarSubcategoria, deletarSubcategoria, listarSucategoria, listarSubcategoriasCategoria } from "../repository/subcategoriaRepository.js";
 import { deletarProduto } from "../repository/produtoRepository.js"
 import { Router } from "express";
 import { listarCategoria } from "../repository/categoriaRepository.js";
@@ -39,13 +39,16 @@ servidor.get('/subcategoria/:id', async (req, resp) => {
     }
 });
 
-servidor.get('/produtosDaSubcategoria/:id', async (req, resp) => {
+servidor.get('/subcategorias/categoria/:id', async (req, resp) => {
     try {
-        let subcategoria = req.params.id;
-        let listaProdutos = await listarProdutosSubcategoria(subcategoria);
-        resp.status(200).json(listaProdutos);
+        let categoria = req.params.id;
+        let listarSubcategorias = await listarSubcategoriasCategoria(categoria);
+        if (listarSubcategorias.length < 1) {
+            throw new Error("Nenhuma subcategoria Encontrada!");
+        }
+        resp.status(200).json(listarSubcategorias);
     } catch (error) {
-        resp.status(500).json({ message: `Erro ao buscar produtos da subcategoria ${id}`, error: error.message });
+        resp.status(404).json({ error: error.message });
     }
 
 });

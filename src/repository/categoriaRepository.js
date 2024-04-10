@@ -53,17 +53,7 @@ export async function listarCategoria(id) {
 
 }
 
-export async function listarSubcategoriasCategoria(id) {
-    try {
-        verificarConexao();
-        let comando = "SELECT * FROM subcategoria WHERE categoriaId = ?"
-        let resp = await con.query(comando, [id]);
-        let linhas = resp[0];
-        return linhas;
-    } catch (error) {
-        throw new Error('Erro ao executar o comando SQL: ' + error.message);
-    }
-}
+
 
 export async function editarCategoria(id, categoria) {
     try {

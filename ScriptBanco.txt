@@ -19,6 +19,7 @@ create table produto(
     descricaoProduto varchar(500),
     valorProduto decimal(10,2),
     pesoProduto varchar(10),
+    grupoProduto varchar(50),
     imagem varchar(255) not null,
     subcategoriaProduto int,
     FOREIGN KEY (subcategoriaProduto) REFERENCES subcategoria(idSubcategoria)

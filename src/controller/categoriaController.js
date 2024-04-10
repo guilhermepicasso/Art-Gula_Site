@@ -1,4 +1,4 @@
-import { salvarCategoria, listarCategorias, editarCategoria, deletarCategoria, listarSubcategoriasCategoria, listarCategoria } from "../repository/categoriaRepository.js";
+import { salvarCategoria, listarCategorias, editarCategoria, deletarCategoria, listarCategoria } from "../repository/categoriaRepository.js";
 import { deletarSubcategoria } from "../repository/subcategoriaRepository.js";
 
 import { Router } from "express";
@@ -27,20 +27,6 @@ servidor.get('/categoria/:id', async (req, resp) => {
     } catch (error) {
         resp.status(500).json({ error: error.message });
     }
-});
-
-servidor.get('/subcategoriasNaCategoria/:id', async (req, resp) => {
-    try {
-        let categoria = req.params.id;
-        let listarSubcategorias = await listarSubcategoriasCategoria(categoria);
-        if (listarSubcategorias.length < 1) {
-            throw new Error("Nenhuma subcategoria Encontrada!");
-        }
-        resp.status(200).json(listarSubcategorias);
-    } catch (error) {
-        resp.status(404).json({ error: error.message });
-    }
-
 });
 
 servidor.post('/categoria', async (req, resp) => {

@@ -1,7 +1,8 @@
-import { salvarProduto, editarProduto, listarProdutos, deletarProduto, listarUmProduto } from "../repository/produtoRepository.js";
+import { salvarProduto, editarProduto, listarProdutos, deletarProduto, listarUmProduto, listarProdutoGrupo, listarProdutosSubcategoria } from "../repository/produtoRepository.js";
+import { listarSucategoria } from "../repository/subcategoriaRepository.js";
 
 import { Router } from "express";
-import { listarSucategoria } from "../repository/subcategoriaRepository.js";
+
 let servidor = Router();
 
 servidor.post('/produto/:subcategoria', async (req, resp) => {
@@ -15,8 +16,7 @@ servidor.post('/produto/:subcategoria', async (req, resp) => {
     } catch (error) {
         resp.status(500).json({ error: error.message });
     }
-
-})
+});
 
 servidor.get('/produto', async (req, resp) => {
     try {
@@ -30,7 +30,6 @@ servidor.get('/produto', async (req, resp) => {
     }
 })
 
-//novo get
 servidor.get('/produto/:id', async (req, resp) => {
     try {
         const id = req.params.id;
@@ -43,6 +42,29 @@ servidor.get('/produto/:id', async (req, resp) => {
         resp.status(500).json({ error: error.message });
     }
 })
+
+servidor.get('/produto/grupo/:grupo', async (req, resp) => {
+    try {
+        const grupo = req.params.grupo;
+        let listaProduto = await listarProdutoGrupo(grupo);
+        if (listaProduto.length < 1) {
+            throw new Error("Grupo não existe ou nenhum produto cadastrado nele!");
+        }
+        resp.status(200).json(listaProduto);
+    } catch (error) {
+        resp.status(500).json({ error: error.message });
+    }
+})
+
+servidor.get('/produto/subcategoria/:id', async (req, resp) => {
+    try {
+        let subcategoria = req.params.id;
+        let listaProdutos = await listarProdutosSubcategoria(subcategoria);
+        resp.status(200).json(listaProdutos);
+    } catch (error) {
+        resp.status(500).json({ message: `Erro ao buscar produtos da subcategoria ${id}`, error: error.message });
+    }
+});
 
 
 servidor.put('/produto/:subcategoria/:id', async (req, resp) => {

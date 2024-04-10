@@ -62,17 +62,14 @@ export async function listarSucategoria(id) {
     }
 }
 
-
-export async function listarProdutosSubcategoria(id) {
+export async function listarSubcategoriasCategoria(id) {
     try {
-        let comando = "SELECT * FROM produto WHERE SubcategoriaProduto = ?"
-
+        let comando = "SELECT * FROM subcategoria WHERE categoriaId = ?"
         let resp = await con.query(comando, [id]);
         let linhas = resp[0];
-
         return linhas;
     } catch (error) {
-        throw new Error('Erro ao executar a consulta SQL: ' + error.message);
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
 }
 

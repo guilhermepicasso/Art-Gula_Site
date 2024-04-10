@@ -7,11 +7,12 @@ export async function salvarProduto(subcategoria, produto) {
             nomeProduto, 
             descricaoProduto, 
             valorProduto, 
-            pesoProduto, 
+            pesoProduto,
+            grupoProduto,
             subcategoriaProduto,
             imagem
             )
-        values (?, ?, ?, ?, ?, ?)
+        values (?, ?, ?, ?, ?, ?, ?)
         `
 
         let resp = await con.query(comando, [
@@ -19,6 +20,7 @@ export async function salvarProduto(subcategoria, produto) {
             produto.descricaoProduto,
             produto.valorProduto,
             produto.pesoProduto,
+            produto.grupoProduto,
             subcategoria,
             produto.imagem
         ]);
@@ -53,6 +55,31 @@ export async function listarUmProduto(id) {
     try {
         let comando = `SELECT * FROM produto WHERE idProduto = ?`;
         let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar o comando SQL: ' + error.message);
+    }
+
+};
+
+export async function listarProdutosSubcategoria(id) {
+    try {
+        let comando = "SELECT * FROM produto WHERE SubcategoriaProduto = ?"
+
+        let resp = await con.query(comando, [id]);
+        let linhas = resp[0];
+
+        return linhas;
+    } catch (error) {
+        throw new Error('Erro ao executar a consulta SQL: ' + error.message);
+    }
+}
+
+export async function listarProdutoGrupo(grupo) {
+    try {
+        let comando = `SELECT * FROM produto WHERE grupoProduto = ?`;
+        let resp = await con.query(comando, [grupo]);
         let linhas = resp[0];
         return linhas;
     } catch (error) {
