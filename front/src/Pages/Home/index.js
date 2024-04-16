@@ -1,8 +1,8 @@
-import './index.css';
+import './index.scss';
 
 function Home() {
   return (
-    <div className="App">
+    <div className="pagina-home">
       <h1>Inserir o código</h1>
     </div>
   );
