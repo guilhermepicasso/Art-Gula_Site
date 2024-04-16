@@ -1,6 +1,6 @@
-import './App.css';
+import './index.css';
 
-function App() {
+function Home() {
   return (
     <div className="App">
       <h1>Inserir o código</h1>
@@ -8,4 +8,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
