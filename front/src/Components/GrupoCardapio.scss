@@ -1,0 +1,72 @@
+.grupo {
+    display: flex;
+    width: 85%;
+    gap: 32px;
+    flex-direction: column;
+    margin: 0;
+
+    .cabecalhoGrupo {
+        text-align: center;
+        font-size: 40px;
+        margin-top: 50px;
+    }
+
+    .cabecalhoGrupo h1{
+        margin: 0;
+    }
+
+    .cabecalhoGrupo p {
+        margin: 0;
+        font-family: "Goud Old";
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    .imagens {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .imagens div {
+        width: 150px;
+        height: 150px;
+        border-radius: 16px;
+        background-image: url("../../src/apoio/imagens/croissant.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+    .produtos {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .cabecalho {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 22px;
+        font-weight: bold;
+    }
+    
+    .cabecalho h3 {
+        font-family: "Playfair";
+        margin: 0;
+    }
+
+    .produto{
+        border-bottom: 1px solid #a97f2c3d;
+    }
+
+    .produtos p {
+        color: var(--cor-cinza-texto);
+        margin: 0;
+        font-family: "Gould Old";
+    }
+
+    .descricao {
+        font-size: 1em;
+    }
+}

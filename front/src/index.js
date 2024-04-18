@@ -5,7 +5,8 @@ import './index.css';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 import Home from './Pages/Home/index.js';
-import Painel_Controle from './Pages/Painel_Controle/index.js';
+import PainelControle from './Pages/PainelControle/index.js';
+import Cardapio from './Pages/Cardapio/index.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -13,7 +14,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />}/>
-        <Route path='/painel_controle' element={<Painel_Controle/>}/>
+        <Route path='/painel_controle' element={<PainelControle/>}/>
+        <Route path='/cardapio' element={<Cardapio/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

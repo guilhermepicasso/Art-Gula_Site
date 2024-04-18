@@ -1,6 +1,6 @@
 import './index.scss';
 
-export default function Painel_Controle() {
+export default function PainelControle() {
     return(
         <main className='pagina-painel_controle'>
             <h1>Painel de controle</h1>
