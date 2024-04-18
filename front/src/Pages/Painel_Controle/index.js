@@ -1,6 +1,6 @@
-import './assets/fonts.css';
+import '../../css/fonts.css';
 import './index.scss';
-import logo from './assets/img/logo.png';
+import logo from '../../assets/img/logo.png';
 
 export default function Painel_Controle() {
     return (
