@@ -2,6 +2,7 @@ import './index.scss';
 import logo from "../../assets/img/logo circular.png";
 import moldura from "../../assets/img/moldura.png";
 import GrupoCardapio from '../../Components/GrupoCardapio';
+import { Link } from 'react-router-dom';
 
 
 
@@ -10,7 +11,7 @@ export default function Cardapio() {
         <div className="bodyCPrincipal">
             <header>
                 <div className='menu'>
-                    <a href="">  </a>
+                    <Link to="/">Home</Link>
                     <a href="">Cardapios</a>
                     <a href="">Contato</a>
                 </div>
