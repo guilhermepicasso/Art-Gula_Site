@@ -1,0 +1,138 @@
+[
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Doceria",
+        "title": "Doceria produto 1",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Doceria",
+        "title": "Doceria produto 2",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Doceria",
+        "title": "Doceria produto 3",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Doceria",
+        "title": "Doceria produto 4",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Salgados",
+        "title": "Salgados produto 1",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Salgados",
+        "title": "Salgados produto 2",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "encomendas",
+        "grupo": "Salgados",
+        "title": "Salgados produto 3",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Bebidas",
+        "title": "Bebidas produto 1",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Bebidas",
+        "title": "Bebidas produto 2",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Bebidas",
+        "title": "Bebidas produto 3",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Bebidas",
+        "title": "Bebidas produto 4",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Sobremesas com Gelato",
+        "title": "Sobremesas com Gelato produto 1",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Sobremesas com Gelato",
+        "title": "Sobremesas com Gelato produto 2",
+        "preco": 28.00,
+        "descricao": "Combinação de ninho com nosso delicioso brigadeiro cremoso e crocantes",
+        "imagem": "../apoio/imagens/taca.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Toast",
+        "title": "Toast produto 1",
+        "preco": 30.00,
+        "descricao": "Pão campanha de fermentação natural, selado na manteiga com creme de ricota, polpa de avocado e castanha do Pará",
+        "imagem": "../apoio/imagens/ovosmexidos.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Toast",
+        "title": "Toast produto 2",
+        "preco": 30.00,
+        "descricao": "Pão campanha de fermentação natural, selado na manteiga com creme de ricota, polpa de avocado e castanha do Pará",
+        "imagem": "../apoio/imagens/ovosmexidos.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Croissant",
+        "title": "Croissant produto 1",
+        "preco": 30.00,
+        "descricao": "Pão campanha de fermentação natural, selado na manteiga com creme de ricota, polpa de avocado e castanha do Pará",
+        "imagem": "../apoio/imagens/ovosmexidos.jpg"
+    },
+    {
+        "subcategoria": "loja",
+        "grupo": "Croissant",
+        "title": "Croissant produto 1",
+        "preco": 30.00,
+        "descricao": "Pão campanha de fermentação natural, selado na manteiga com creme de ricota, polpa de avocado e castanha do Pará",
+        "imagem": "../apoio/imagens/ovosmexidos.jpg"
+    }
+]

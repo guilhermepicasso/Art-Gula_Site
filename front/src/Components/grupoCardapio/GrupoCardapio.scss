@@ -1,21 +1,21 @@
-.grupo {
+.grupo-cardapio {
     display: flex;
     width: 85%;
     gap: 32px;
     flex-direction: column;
     margin: 0;
 
-    .cabecalhoGrupo {
+    .cabecalho-Grupo {
         text-align: center;
         font-size: 40px;
         margin-top: 50px;
     }
 
-    .cabecalhoGrupo h1{
+    .cabecalho-Grupo h1{
         margin: 0;
     }
 
-    .cabecalhoGrupo p {
+    .cabecalho-Grupo p {
         margin: 0;
         font-family: "Goud Old";
         font-weight: bold;
@@ -25,15 +25,16 @@
     .imagens {
         display: flex;
         justify-content: space-around;
+        padding: 50px 0;
     }
 
     .imagens div {
         width: 150px;
         height: 150px;
         border-radius: 16px;
-        background-image: url("../../src/apoio/imagens/croissant.jpg");
         background-repeat: no-repeat;
         background-size: cover;
+        background-position: center;
     }
     
     .produtos {
