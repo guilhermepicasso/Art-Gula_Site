@@ -13,7 +13,7 @@ const style = {
   transform: 'translate(-50%, -50%)'
 };
 
-function Home() {
+export default function Home() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

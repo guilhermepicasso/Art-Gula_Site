@@ -1,58 +1,18 @@
-
-
-.telaPianel{
-    display: flex;
-    height: 658px;
-}
-
-.telaInfo{
-    background-color: white;
-    width: 100%;
-}
-
-.toolBar{
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.testePainel{
-    display: flex;
-    align-items: center;
-    font-size: 1.3rem;
-    gap: 16px;
-    color: #A97F2C;
-    width: 100%;
-}
-
-.testePainel div{
-    width: 15px;
-    height: 70px;
-    border-radius: 5px;
-    margin-left: -8px;
-    background-color: #A97F2C;
-}
-
-.botoesNav{
-    width: 100%;
-}
-
-.pagina-painel_controle{
+.pagina-painel_controle {
     *{
         margin: 0px;
         box-sizing: border-box;
     }
 
     //fonts 
-    
+
 
     //
 
-    
-    
-    .sidebar{
+    display: flex;
+
+
+    .sidebar {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -62,40 +22,44 @@
         width: 250px;
         height: 100%;
     }
-    .sidebar > nav{
+
+    .sidebar>nav {
         display: flex;
         flex-direction: column;
     }
-    .logo{
+
+    .logo {
         padding: 50px 0px 91px 0px;
     }
-    .sidebar_button{
+
+    .sidebar_button {
         display: flex;
         align-items: center;
         text-decoration: none;
-        color: #B1B1B1;
+        color: #FDE6E8;
         gap: 36px;
+        padding: 12px 0;
         width: 250px;
-
         font-family: 'inter_medium';
         font-size: 18px;
-
-        
     }
-    .select{
+
+    .select {
         color: #A97F2C;
     }
 
 
-    .main_page{
+    .main_page {
+        visibility: hidden;
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: #F5F5F9;
-        margin-left: 250px;
+        // margin-left: 250px;
         gap: 60px;
     }
-    .painel_title{
+
+    .painel_title {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -110,9 +74,10 @@
         font-family: 'inter_bold';
         font-size: 14px;
 
-        
+
     }
-    .tabela{
+
+    .tabela {
         display: flex;
         flex-direction: column;
         width: 1200px;
@@ -120,7 +85,8 @@
         border: 1px solid #FDE6E8;
         border-radius: 12px;
     }
-    .tabela_title{
+
+    .tabela_title {
         display: flex;
         flex-direction: row;
         padding: 20px 20px;
@@ -129,11 +95,13 @@
         font-family: 'inter_bold';
         font-size: 14px;
     }
-    .tabela_title > a{
+
+    .tabela_title>a {
         font-family: 'poppins_semibold';
         font-size: 12px;
     }
-    .tabela_legenda{
+
+    .tabela_legenda {
         display: flex;
         flex-direction: row;
         justify-content: space-around;
@@ -144,7 +112,8 @@
         font-family: 'poppins_semibold';
         font-size: 14px;
     }
-    .title_button{
+
+    .title_button {
         display: flex;
         align-items: center;
         background-color: #A97F2C;
@@ -156,18 +125,20 @@
         height: 29px;
         gap: 10px;
     }
-    .tabela_item{
+
+    .tabela_item {
         display: flex;
-        
+
         align-items: center;
         justify-content: center;
         border-top: 1px solid #F6CABC;
         padding: 20px 0px;
-        
+
         font-family: 'inter_bold';
         font-size: 16px;
     }
-    .tabela_item > div{
+
+    .tabela_item>div {
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -175,16 +146,16 @@
         max-width: 980px;
         width: 100%;
     }
-    
-    .area_button{
+
+    .area_button {
         display: flex;
         flex-direction: row;
         gap: 10px;
         font-family: 'poppins_semibold';
         font-size: 10px;
     }
-    
-    .item_button{
+
+    .item_button {
         display: flex;
         align-items: center;
         background-color: #A97F2C;
@@ -198,7 +169,8 @@
 
 
     }
-    .deletar_button{
+
+    .deletar_button {
         background-color: #ff0000;
     }
 

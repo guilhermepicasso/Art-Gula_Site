@@ -7,9 +7,11 @@ export default function Painel_Controle() {
     return (
         <main className='pagina-painel_controle'>
             <div className='sidebar'>
+                
                 <div className='logo'>
                     <img src={logo} alt="Logo da loja" width="145" height="145" />
                 </div>
+                
                 <nav>
                     <a href="#" className='sidebar_button select'>
                         <svg width="6" height="60" viewBox="0 0 6 60" fill="none" xmlns="http://www.w3.org/2000/svg">

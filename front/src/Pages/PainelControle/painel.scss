@@ -1,0 +1,47 @@
+:root {
+    --cor-principal: #FDE6E8;
+    --cor-rosa-secundario: #f6cabc;
+    --cor-dourado: #a97f2c;
+    --cor-cinza-principal: #9a9a9a;
+    --cor-cinza-texto: #7b7b7b;
+}
+
+.telaPianel {
+    display: flex;
+    height: 100vh;
+    border: 1px solid;
+
+    .toolBar {
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+
+        .testePainel {
+            display: flex;
+            align-items: center;
+            font-size: 1.3rem;
+            gap: 16px;
+            color: var(--cor-dourado);
+            width: 100%;
+        }
+
+        .testePainel div {
+            width: 15px;
+            height: 70px;
+            border-radius: 5px;
+            margin-left: -8px;
+            background-color: #A97F2C;
+        }
+
+        .botoesNav {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+    }
+}
