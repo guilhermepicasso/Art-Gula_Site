@@ -58,12 +58,29 @@
         height: 100px;
         border-radius: 8px;
         border: 2px solid #A97F2C;
-
         font-family: 'inter_bold';
         font-size: 14px;
-
-        
     }
+    .area_buttonProduto{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .cardapio_button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FDE6E8;
+        color: #A97F2C;
+        font-family: 'poppins_semibold';
+        padding: 5px 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        font-size: 12px;
+        height: 29px;
+        width: 155px;
+        gap: 5px;
+    }
+
     .tabela{
         display: flex;
         flex-direction: column;
@@ -81,10 +98,16 @@
         font-family: 'inter_bold';
         font-size: 14px;
     }
-    .tabela_title > a{
+    .tabela_title > div{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .tabela_title > div a{
         font-family: 'poppins_semibold';
         font-size: 12px;
     }
+
     .tabela_legenda{
         display: flex;
         flex-direction: row;
@@ -99,6 +122,7 @@
     .title_button{
         display: flex;
         align-items: center;
+        justify-content: center;
         background-color: #A97F2C;
         color: #FFFFFF;
         border-radius: 10px;
@@ -107,6 +131,9 @@
         width: 103px;
         height: 29px;
         gap: 10px;
+    }
+    .produto_button{
+        width: 155px;
     }
     .tabela_item{
         display: flex;
