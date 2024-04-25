@@ -5,7 +5,7 @@ import './index.css';
 import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 import Home from './Pages/Home/index.js';
-import PainelControle from './Pages/PainelControle/index.js';
+import PainelControle from './Pages/PainelControle/painel.js';
 import Cardapio from './Pages/Cardapio/index.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

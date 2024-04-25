@@ -1,0 +1,104 @@
+@font-face {
+    font-family: "Playfair";
+    src: url("../../assets/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+:root {
+    --cor-principal: #FDE6E8;
+    --cor-rosa-secundario: #f6cabc;
+    --cor-dourado: #a97f2c;
+    --cor-cinza-principal: #9a9a9a;
+    --cor-cinza-texto: #7b7b7b;
+}
+
+.telaLogin {
+    border: 1px solid;
+    max-width: 100%;
+    padding: 40px;
+    gap: 55px;
+    display: flex;
+    background-color: white;
+
+    .capa {
+        width: 60%;
+        align-content: center;
+        border-radius: 16px;
+        background-image: url("../../assets/img/frenteLoja.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+    }
+
+    .campos {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    img {
+        max-width: 70%;
+    }
+
+    .containerCampos {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    p {
+        font-family: "Playfair";
+        color: var(--cor-dourado);
+        text-align: center;
+        font-size: 0.7em;
+    }
+
+    .warning {
+        height: 100%;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+        padding: 0 20px;
+    }
+
+    .inputCampos {
+        width: 100%;
+    }
+
+    form div p {
+        text-align: start;
+        margin-bottom: 8px;
+    }
+
+    .inputCampo {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: var(--cor-principal);
+        border: 1px solid var(--cor-dourado);
+        border-radius: 40px;
+        padding: 8px 16px;
+        max-width: 100%;
+    }
+
+    .inputCampo input {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+
+    form button {
+        background-color: var(--cor-dourado);
+        border: none;
+        padding: 8px 32px;
+        border-radius: 40px;
+        font-family: "Playfair";
+        color: #fff;
+    }
+}

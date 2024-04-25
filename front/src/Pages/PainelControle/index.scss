@@ -1,3 +1,44 @@
+
+
+.telaPianel{
+    display: flex;
+    height: 658px;
+}
+
+.telaInfo{
+    background-color: white;
+    width: 100%;
+}
+
+.toolBar{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.testePainel{
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 16px;
+    color: #A97F2C;
+    width: 100%;
+}
+
+.testePainel div{
+    width: 15px;
+    height: 70px;
+    border-radius: 5px;
+    margin-left: -8px;
+    background-color: #A97F2C;
+}
+
+.botoesNav{
+    width: 100%;
+}
+
 .pagina-painel_controle{
     *{
         margin: 0px;
@@ -8,6 +49,8 @@
     
 
     //
+
+    
     
     .sidebar{
         display: flex;

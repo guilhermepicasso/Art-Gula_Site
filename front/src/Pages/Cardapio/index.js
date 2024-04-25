@@ -17,8 +17,6 @@ export default function Cardapio() {
     const handleSelectItem = (item) => {
         setSelectedItem(item);
         const produtosFiltrados = produtos.filter(produto => produto.subcategoria === item);
-
-        // Agrupando os produtos filtrados por grupo
         const produtosPorGrupo = {};
         produtosFiltrados.forEach(produto => {
             if (!produtosPorGrupo[produto.grupo]) {
@@ -26,8 +24,6 @@ export default function Cardapio() {
             }
             produtosPorGrupo[produto.grupo].push(produto);
         });
-
-        // Atualizando o estado com os produtos agrupados por grupo
         setProdutosPorGrupo(produtosPorGrupo);
     };
 

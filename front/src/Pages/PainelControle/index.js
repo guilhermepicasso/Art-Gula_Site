@@ -1,6 +1,7 @@
 import '../../css/fonts.css';
 import './index.scss';
-import logo from '../../assets/img/logo.png';
+import logo from '../../assets/img/logo circular.png';
+
 
 export default function Painel_Controle() {
     return (
@@ -221,13 +222,8 @@ export default function Painel_Controle() {
                             </a>
                         </div>
                     </div>
-                    
+
                 </div>
-
-                
-
-                
-
             </div>
         </main>
     );
