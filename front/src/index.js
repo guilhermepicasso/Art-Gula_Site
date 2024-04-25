@@ -15,6 +15,7 @@ root.render(
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/painel_controle' element={<PainelControle/>}/>
+        <Route path='/painel_controle/cardapios' element={<Painel_Controle_cardapios/>}/>
         <Route path='/cardapio' element={<Cardapio/>}/>
       </Routes>
     </BrowserRouter>

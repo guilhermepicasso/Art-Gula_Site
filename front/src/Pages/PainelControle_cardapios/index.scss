@@ -1,57 +1,9 @@
-
-
-.telaPianel{
-    display: flex;
-    height: 658px;
-}
-
-.telaInfo{
-    background-color: white;
-    width: 100%;
-}
-
-.toolBar{
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.testePainel{
-    display: flex;
-    align-items: center;
-    font-size: 1.3rem;
-    gap: 16px;
-    color: #A97F2C;
-    width: 100%;
-}
-
-.testePainel div{
-    width: 15px;
-    height: 70px;
-    border-radius: 5px;
-    margin-left: -8px;
-    background-color: #A97F2C;
-}
-
-.botoesNav{
-    width: 100%;
-}
-
 .pagina-painel_controle{
     *{
         margin: 0px;
         box-sizing: border-box;
     }
 
-    //fonts 
-    
-
-    //
-
-    
-    
     .sidebar{
         display: flex;
         flex-direction: column;
@@ -106,12 +58,29 @@
         height: 100px;
         border-radius: 8px;
         border: 2px solid #A97F2C;
-
         font-family: 'inter_bold';
         font-size: 14px;
-
-        
     }
+    .area_buttonProduto{
+        display: flex;
+        justify-content: flex-end;
+    }
+    .cardapio_button{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #FDE6E8;
+        color: #A97F2C;
+        font-family: 'poppins_semibold';
+        padding: 5px 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        font-size: 12px;
+        height: 29px;
+        width: 155px;
+        gap: 5px;
+    }
+
     .tabela{
         display: flex;
         flex-direction: column;
@@ -129,10 +98,16 @@
         font-family: 'inter_bold';
         font-size: 14px;
     }
-    .tabela_title > a{
+    .tabela_title > div{
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+    .tabela_title > div a{
         font-family: 'poppins_semibold';
         font-size: 12px;
     }
+
     .tabela_legenda{
         display: flex;
         flex-direction: row;
@@ -147,6 +122,7 @@
     .title_button{
         display: flex;
         align-items: center;
+        justify-content: center;
         background-color: #A97F2C;
         color: #FFFFFF;
         border-radius: 10px;
@@ -155,6 +131,9 @@
         width: 103px;
         height: 29px;
         gap: 10px;
+    }
+    .produto_button{
+        width: 155px;
     }
     .tabela_item{
         display: flex;
