@@ -1,4 +1,69 @@
-.pagina-home{
+.pagina-home {
     display: flex;
     flex-direction: column;
+    margin-top: 8px;
+
+    header {
+        display: flex;
+        padding: 0 32px;
+        justify-content: space-between;
+        align-items: center;
+        font-family: "Goud Old";
+        font-size: 18px;
+
+        a {
+            text-decoration: none;
+            color: var(--cor-cinza-texto);
+
+            align-content: center;
+        }
+
+        .menu {
+            display: flex;
+            width: 100%;
+            gap: 16px;
+            color: var(--cor-cinza-texto);
+        }
+
+        .logo {
+            align-content: center;
+            text-align: center;
+            height: 90px;
+            width: 90px;
+        }
+
+        .logo img {
+            height: 105%;
+        }
+
+        .acessoAdm {
+            display: flex;
+            justify-content: end;
+            width: 100%;
+
+            button {
+                padding: 8px 16px;
+                background-color: var(--cor-dourado);
+                color: white;
+                border: none;
+                border-radius: 90px;
+                cursor: pointer;
+            }
+        }
+    }
+
+    section{
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        padding: 2% 8% ;
+    }
+
+}
+
+.circle{
+    border: 1px solid var(--cor-dourado);
+    width: 25px;
+    height: 100%;
+    border-radius: 90px;
 }

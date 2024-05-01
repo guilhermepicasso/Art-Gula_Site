@@ -1,12 +1,14 @@
-import "./Login.scss"
-import logo from "../../assets/img/logo.png"
+import "./Login.scss";
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import Alert from '@mui/material/Alert';
+import Stack from '@mui/material/Stack';
 
 export default function Login() {
     const [usuario, setUsusario] = useState("");
     const [password, setPassword] = useState("");
+    const [warning, setWarning] = useState("hidden");
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const navigate = useNavigate();
 
@@ -19,9 +21,9 @@ export default function Login() {
     function dados(event) {
         event.preventDefault();
         if (usuario == "teste 1" && password == "12345") {
-            navigate("/painel_controle");
+            navigate("/painel");
         } else {
-            console.log(usuario, password);
+            setWarning("visible");
         }
     }
 
@@ -30,11 +32,15 @@ export default function Login() {
             <div className="capa">
             </div>
             <div className="campos">
-                <img src={logo}></img>
+                <img src='/assets/img/logo.png'></img>
                 <div className="containerCampos">
                     <p>Bem vindo!</p>
                     <p>Esta área é exclusiva para o administrador da página.</p>
-                    <div className="warning"></div>
+                    <Stack sx={{ width: '100%' }} spacing={2}>
+                        <Alert variant="filled" severity="error" style={{visibility:warning}}>
+                            Usuário ou senha inválido.
+                        </Alert>
+                    </Stack>
                     <form>
                         <div className="inputCampos">
                             <p>Usuário</p>

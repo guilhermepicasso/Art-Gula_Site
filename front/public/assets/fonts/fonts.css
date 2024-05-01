@@ -1,0 +1,54 @@
+:root {
+    --cor-principal: #FDE6E8;
+    --cor-rosa-secundario: #f6cabc;
+    --cor-dourado: #a97f2c;
+    --cor-cinza-principal: #9a9a9a;
+    --cor-cinza-fundo: #F5F5F9;
+    --cor-cinza-texto: #7b7b7b;
+}
+
+@font-face {
+    font-family: "Allura - Regular";
+    src: url('./Allura-Regular.ttf');
+}
+
+@font-face {
+    font-family: "Harrigton";
+    src: url("./HARRINGT.TTF");
+}
+
+@font-face {
+    font-family: "Goud Old";
+    src: url("./SortsMillGoudy-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Playfair";
+    src: url("./PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: 'poppins_semibold';
+    font-weight: 600;
+    src: url('./poppins-semibold-webfont.woff2') format('woff2'),
+        url('./poppins-semibold-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'inter_bold';
+    font-weight: 700;
+    src: url('./inter-bold-webfont.woff2') format('woff2'),
+        url('./inter-bold-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'inter_medium';
+    font-weight: 500;
+    src: url('./inter-medium-webfont.woff2') format('woff2'),
+        url('./inter-medium-webfont.woff') format('woff');
+}
+
+@font-face {
+    font-family: "Goud Old";
+    src: url('./SortsMillGoudy-Regular.ttf');
+}
