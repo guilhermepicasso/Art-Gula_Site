@@ -17,7 +17,12 @@ export default function Home() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const imagens = [{imagem: "/assets/img/croissant.jpg", titulo: "Croissant"}, {imagem: "/assets/img/gelato.jpg", titulo: "Gelato"}, {imagem: "/assets/img/panquecas.jpg", titulo: "Panquecas"}];
+  const imagens = [
+    { imagem: "/assets/img/croissant.jpg", titulo: "Croissant" }, 
+    { imagem: "/assets/img/gelato.jpg", titulo: "Gelato" }, 
+    { imagem: "/assets/img/panquecas.jpg", titulo: "Panquecas" }
+  ];
+
   return (
     <div className="pagina-home">
       <header>

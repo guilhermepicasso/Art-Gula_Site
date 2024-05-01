@@ -29,7 +29,7 @@ export default function CarrosselPrincipal(props) {
                 <button>Siga a gente <MdOutlineMenuBook /></button>
             </div>
             <div className='btnSelecionar'>
-                <Stack spacing={2}>
+                <Stack spacing={0}>
                     <Pagination
                         count={galeria.length}
                         onChange={handleChange}
@@ -39,12 +39,10 @@ export default function CarrosselPrincipal(props) {
                         sx={{
                             '& .MuiPaginationItem-root': {
                                 border: "2px solid #a97f2c",
-                                backgroundColor: 'transparent',
                                 color: 'transparent',
                             },
                             '& .Mui-selected': {
-                                backgroundColor: '#FDE6E8',
-                                color: 'transparent',
+                                backgroundColor: '#FDE6E8'
                             },
                         }}
                     />
