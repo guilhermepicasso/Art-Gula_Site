@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Playfair";
-    src: url("../../assets/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+    src: url('../../../public/assets/fonts/PlayfairDisplay-Regular.ttf');
 }
 
 :root {
@@ -23,7 +23,7 @@
         width: 60%;
         align-content: center;
         border-radius: 16px;
-        background-image: url("../../assets/img/frenteLoja.jpg");
+        background-image: url("../../../public/assets/img/frenteLoja.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;

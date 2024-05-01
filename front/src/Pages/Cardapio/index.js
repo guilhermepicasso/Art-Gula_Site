@@ -1,7 +1,5 @@
 import './index.scss';
 import React, { useEffect, useState } from 'react';
-import logo from "../../assets/img/logo circular.png";
-import moldura from "../../assets/img/moldura.png";
 import GrupoCardapio from '../../Components/grupoCardapio/GrupoCardapio';
 import { Link } from 'react-router-dom';
 import ButtonList from '../../Components/ButtonList/ButtonList';
@@ -49,22 +47,22 @@ export default function Cardapio() {
                     <ButtonList items={subcategorias} onSelect={handleSelectItem}></ButtonList>
                     <a href="">Contato</a>
                 </div>
-                <div className='logo'><img src={logo}></img></div>
+                <div className='logo'><img src='/assets/img/logo circular.png'></img></div>
             </header>
             <div className="bodyCardapio">
 
                 <div className="moldurasuperior">
-                    <img className="moldura molduraesquerda" src={moldura}></img>
+                    <img className="moldura molduraesquerda" src='/assets/img/moldura.png'></img>
                     <h1>Menu {selectedItem}</h1>
-                    <img className="moldura molduradireita" src={moldura}></img>
+                    <img className="moldura molduradireita" src='/assets/img/moldura.png'></img>
                 </div>
                 <div className="container">
                     <GrupoCardapio produtos={produtosPorGrupo}></GrupoCardapio>
                 </div>
                 <div className="moldurainferior">
-                    <img className="moldura molduraesquerda" src={moldura}></img>
+                    <img className="moldura molduraesquerda" src='/assets/img/moldura.png'></img>
                     <h1>Atualizações em: 18/10/2023</h1>
-                    <img className="moldura molduradireita" src={moldura}></img>
+                    <img className="moldura molduradireita" src='/assets/img/moldura.png'></img>
                 </div>
             </div>
         </div>

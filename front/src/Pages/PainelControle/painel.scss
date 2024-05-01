@@ -1,15 +1,7 @@
-:root {
-    --cor-principal: #FDE6E8;
-    --cor-rosa-secundario: #f6cabc;
-    --cor-dourado: #a97f2c;
-    --cor-cinza-principal: #9a9a9a;
-    --cor-cinza-texto: #7b7b7b;
-}
-
 .telaPianel {
     display: flex;
-    height: 100vh;
-    border: 1px solid;
+    height: 99.7vh;
+    overflow: hidden;
 
     .toolBar {
         width: 20%;
@@ -17,6 +9,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
+        // position: fixed;
+        border-right: 1px solid;
 
         .testePainel {
             display: flex;

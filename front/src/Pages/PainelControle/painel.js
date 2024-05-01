@@ -1,5 +1,4 @@
 import './painel.scss';
-import logo from '../../assets/img/logo circular.png';
 import { AiFillHome } from "react-icons/ai";
 import { MdOutlineMenuBook } from "react-icons/md";
 import Tela_Info_Painel from '../../Components/TelaInfoPainel/TelaInfoPainel.js';
@@ -14,10 +13,10 @@ export default function Painel() {
         <main className='telaPianel'>
             <section className='toolBar'>
                 <div className='logo'>
-                    <img src={logo} alt="Logo da loja" width="145" height="145" />
+                    <img src='/assets/img/logo circular.png' alt="Logo da loja" width="145" height="145" />
                 </div>
                 <div className='botoesNav'>
-                    <nav onClick={() => handleSelectItem("Cardápio")} className='testePainel' style={{ color: "black" }}>
+                    <nav onClick={() => handleSelectItem("Cardápio")} className='testePainel' style={{ color: selectedItem === "Cardápio" ? 'red' : 'black' }}>
                         <div style={{ background: "transparent" }}></div>
                         <MdOutlineMenuBook ></MdOutlineMenuBook>
                         <p>Cardápio</p>
