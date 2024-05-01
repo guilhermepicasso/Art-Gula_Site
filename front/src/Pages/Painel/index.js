@@ -1,4 +1,4 @@
-import './painel.scss';
+import './index.scss';
 import logo from '../../assets/img/logo circular.png';
 import { AiFillHome } from "react-icons/ai";
 import { MdOutlineMenuBook } from "react-icons/md";
@@ -10,7 +10,6 @@ export default function Painel() {
     const handleSelectItem = (item) => {
         setSelectedItem(item);
     };
-    //visibility: params.titulo === "Cardápio" ? 'visible' : 'hidden'
     return (
         <main className='telaPianel'>
             <section className='toolBar'>
