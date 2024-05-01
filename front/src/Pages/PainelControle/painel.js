@@ -9,6 +9,7 @@ export default function Painel() {
     const handleSelectItem = (item) => {
         setSelectedItem(item);
     };
+    //visibility: params.titulo === "Cardápio" ? 'visible' : 'hidden'
     return (
         <main className='telaPianel'>
             <section className='toolBar'>
@@ -16,13 +17,13 @@ export default function Painel() {
                     <img src='/assets/img/logo circular.png' alt="Logo da loja" width="145" height="145" />
                 </div>
                 <div className='botoesNav'>
-                    <nav onClick={() => handleSelectItem("Cardápio")} className='testePainel' style={{ color: selectedItem === "Cardápio" ? 'red' : 'black' }}>
-                        <div style={{ background: "transparent" }}></div>
+                    <nav onClick={() => handleSelectItem("Cardápio")} className='testePainel' style={{ color: selectedItem === "Cardápio" ? '#a97f2c' : '#9a9a9a' }}>
+                        <div style={{ visibility: selectedItem === "Cardápio" ? 'visible' : 'hidden' }}></div>
                         <MdOutlineMenuBook ></MdOutlineMenuBook>
                         <p>Cardápio</p>
                     </nav>
-                    <nav onClick={() => handleSelectItem("Painel de Controle")} className='testePainel'>
-                        <div></div>
+                    <nav onClick={() => handleSelectItem("Painel de Controle")} className='testePainel' style={{color: selectedItem === "Painel de Controle" ? '#a97f2c' : '#9a9a9a'}}>
+                        <div style={{ visibility: selectedItem === "Painel de Controle" ? 'visible' : 'hidden' }}></div>
                         <AiFillHome ></AiFillHome>
                         <p >Painel</p>
                     </nav>
