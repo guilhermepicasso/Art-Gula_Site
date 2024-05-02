@@ -8,6 +8,8 @@ import Home from './Pages/Home/index.js';
 import Cardapio from './Pages/Cardapio/index.js';
 import Painel from './Pages/Painel/index.js';
 
+import Teste from './Pages/Teste/index.js';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +19,7 @@ root.render(
         <Route path='/' element={<Home />}/>
         <Route path='/painel' element={<Painel/>}/>
         <Route path='/cardapio' element={<Cardapio/>}/>
+        <Route path='/teste' element={<Teste/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
