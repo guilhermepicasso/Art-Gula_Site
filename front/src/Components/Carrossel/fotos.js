@@ -3,30 +3,22 @@ import './index.scss';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import React, { useState } from 'react';
-import { MdOutlineMenuBook } from "react-icons/md";
 
-export default function CarrosselPrincipal(props) {
+export default function CarrosselFotos(props) {
     const galeria = props.imagens
-    const [titulo, setTitulo] = useState(galeria[0].titulo);
-    const [imagem, setImagem] = useState(galeria[0].imagem);
+    const [indice, setIndice] = useState(0);
 
     const handleChange = (event, newValue) => {
-        galeria.forEach((foto, index) => {
-            if (newValue === (index+1)) {
-                setImagem(foto.imagem);
-                setTitulo(foto.titulo);
-            }
-        });
+        setIndice(newValue-1);
     };
 
     return (
-        <div className='carrosselPrincipal' style={{ backgroundImage: `url(${imagem})` }}>
-            <div className='displayCarrossel' >
-                <h1>
-                    {titulo}
-                </h1>
-                <button>Faça seu pedido <MdOutlineMenuBook /></button>
-                <button>Siga a gente <MdOutlineMenuBook /></button>
+        <div className='carrosselFotos' >
+            <h1>Fotos</h1>
+            <div className='fotos'>
+                <div className='fotoSecundaria' style={{ backgroundImage: `url(${galeria[indice-1]})` }}></div>
+                <div className='fotoPrincipal' style={{ backgroundImage: `url(${galeria[indice]})` }}></div>
+                <div className='fotoSecundaria' style={{ backgroundImage: `url(${galeria[indice + 1]})` }}></div>
             </div>
             <div className='btnSelecionar'>
                 <Stack spacing={0}>

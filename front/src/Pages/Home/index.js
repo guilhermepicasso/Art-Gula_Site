@@ -4,7 +4,8 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import CarrosselPrincipal from '../../Components/CarrosselPrincipal';
+import CarrosselPrincipal from '../../Components/Carrossel/principal';
+import CarrosselFotos from '../../Components/Carrossel/fotos';
 
 const style = {
   position: 'absolute',
@@ -18,10 +19,12 @@ export default function Home() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const imagens = [
-    { imagem: "/assets/img/croissant.jpg", titulo: "Croissant" }, 
-    { imagem: "/assets/img/gelato.jpg", titulo: "Gelato" }, 
+    { imagem: "/assets/img/croissant.jpg", titulo: "Croissant" },
+    { imagem: "/assets/img/gelato.jpg", titulo: "Gelato" },
     { imagem: "/assets/img/panquecas.jpg", titulo: "Panquecas" }
   ];
+  const imagens2 = ["/assets/img/croissant.jpg", "/assets/img/gelato.jpg", "/assets/img/panquecas.jpg", "/assets/img/croissant.jpg", "/assets/img/gelato.jpg", "/assets/img/panquecas.jpg"];
+
 
   return (
     <div className="pagina-home">
@@ -48,7 +51,10 @@ export default function Home() {
         </Box>
       </Modal>
       <section>
-        <CarrosselPrincipal imagens={imagens}></CarrosselPrincipal>
+        <CarrosselPrincipal imagens={imagens} tipo="Painel Principal" />
+      </section>
+      <section>
+        <CarrosselFotos imagens={imagens2} />
       </section>
     </div>
   );
