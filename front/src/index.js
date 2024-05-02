@@ -6,6 +6,7 @@ import {BrowserRouter,Routes,Route} from "react-router-dom";
 
 import Home from './Pages/Home/index.js';
 import Cardapio from './Pages/Cardapio/index.js';
+import Painel from './Pages/Painel/index.js';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
