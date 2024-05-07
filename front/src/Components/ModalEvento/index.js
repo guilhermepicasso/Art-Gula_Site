@@ -2,7 +2,6 @@ import './index.scss';
 import React, { useState } from 'react';
 
 import { MdOutlineFileDownload } from "react-icons/md";
-import { MdOutlineCalendarMonth } from "react-icons/md";
 
 export default function ModalEvento() {
 
@@ -21,16 +20,21 @@ export default function ModalEvento() {
             </div>
             <div className='input_section'>
                 <div>
-                    <label for="campoDeTexto1" className='input_label'>Título do Evento:</label>
+                    <label htmlFor="campoDeTexto1" className='input_label'>Título do Evento:</label>
                     <input id="campoDeTexto1" className="input_texto" />
                 </div>
                 <div>
-                    <label for="date1" className='input_label'>Dia:</label>
+                    <label htmlFor="date1" className='input_label'>Dia:</label>
                     <input id="date1" className="input_date" type='date'/>
-                    <MdOutlineCalendarMonth />
-                    <label for="date2" className='input_label'> até Dia:</label>
+                    <label htmlFor="date2" className='input_label'> até Dia:</label>
                     <input id="date2" className="input_date"  type='date' />
-                    <MdOutlineCalendarMonth />
+                </div>
+
+                <div>
+                    <label htmlFor="time1" className='input_label'>Hora Início:</label>
+                    <input id="time1" className="input_date" type='time'/>
+                    <label htmlFor="time2" className='input_label'>Hora Fim:</label>
+                    <input id="time2" className="input_date"  type='time' />
                 </div>
                 
 

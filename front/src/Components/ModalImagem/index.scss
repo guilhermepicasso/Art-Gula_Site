@@ -1,8 +1,7 @@
-.modal-evento {
+.modal-imagem {
     display: flex;
     flex-direction: column;
-    width: 515px;
-    height: 604px;
+    width: 562px;
     border-radius: 34px;
     border: 1px solid #a97f2c;
     background-color: #FFFFFF;
@@ -18,10 +17,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 220px;
-        height: 200px;
         border-radius: 2px;
         background-color: #9A9A9A;
+    }
+    .styleGrupo-Fotos{
+        width: 220px;
+        height: 386px;
+    }
+    .styleGrupo-Carrosel{
+        width: 494px;
+        height: 231px;
     }
 
     .icon_arquivo {
@@ -29,46 +34,18 @@
         color: #CBCAC8;
     }
 
-    .input_section {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
-
-        .input_texto {
-            border: 0;
-            border-bottom: 1px solid #B3ADA7;
-            background: transparent;
-            outline: 0;
-            width: 70%;
-        }
-        .input_date{
-            border: none;
-            border-bottom: 1px solid black;
-            margin-right: 10px;
-        }
-        .input_label{
-            margin-right: 10px;
-        }
-
-    }
-
-    .text_area {
-        display: flex;
-        align-items: baseline;
-        gap: 10px;
-
-        .textarea-field {
-            resize: none;
-            border: 1px solid black;
-            border-radius: 5px;
-            height: 97px;
-            flex: 1;
-        }
+    .input_texto {
+        border: 0;
+        border-bottom: 1px solid #B3ADA7;
+        background: transparent;
+        outline: 0;
+        width: 75%;
     }
 
     .button_salvar {
         display: flex;
         justify-content: flex-end;
+
         a {
             display: flex;
             justify-content: center;
@@ -80,8 +57,21 @@
             color: #ffffff;
             background-color: #FF9E87;
             border-radius: 5px;
+            cursor: pointer;
         }
-
     }
-
+    .button_section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+        .button{
+            border-radius: 20px;
+            background-color: #FF9E87;
+            color: #FFFFFF;
+            width: 98px;
+            height: 31px;
+            border: 1px solid #FF9E87;
+        }
+    }
 }
