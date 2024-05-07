@@ -1,33 +1,14 @@
-.modal-adicionar {
+.modal-cardapio {
     display: flex;
     flex-direction: column;
-    width: 515px;
-    height: 590px;
+    max-width: 515px;
+    width: 100%;
+    height: 324px;
     border-radius: 10px;
     border: 1px solid #a97f2c;
     background-color: #FFFFFF;
     padding: 28px 20px;
     gap: 30px;
-
-    .area_arquivo {
-        display: flex;
-        justify-content: center;
-    }
-
-    .arquivo_campo {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 220px;
-        height: 200px;
-        border-radius: 2px;
-        background-color: #9A9A9A;
-    }
-
-    .icon_arquivo {
-        font-size: 64px;
-        color: #CBCAC8;
-    }
 
     .input_section {
         display: flex;
@@ -39,33 +20,41 @@
             border-bottom: 1px solid #B3ADA7;
             background: transparent;
             outline: 0;
-            width: 75%;
+            width: 70%;
         }
-    }
 
-    .select {
-        .select_grupo {
+        .button_adcionar{
+            text-align: center;
             cursor: pointer;
-            width: 32%;
-            background: none transparent;
-            border: 0;
-            outline: 0;
-            border-bottom: 1px solid black;
         }
     }
 
-    .text_area {
+    .selectTag {
         display: flex;
-        align-items: baseline;
+        flex-wrap: wrap;
+        width: 473px;
+        min-height: 115px;
+        border-radius: 8px;
+        border:  1px solid black;
+        padding: 15px;
         gap: 10px;
-
-        .textarea-field {
-            resize: none;
+        .tag{
+            display: flex;
+            align-items: center;
             border: 1px solid black;
-            border-radius: 5px;
-            height: 97px;
-            flex: 1;
+            border-radius: 12px;
+            padding: 5px 10px;
+            max-height: 28px;
         }
+        .tag .tag_close{
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            margin-left: 10px;
+            cursor: pointer;            
+            color: #B3ADA7;
+        }
+        
     }
 
     .button_salvar {
@@ -73,6 +62,7 @@
         justify-content: flex-end;
         a {
             display: flex;
+            cursor: pointer;
             justify-content: center;
             align-items: center;
             width: 98px;

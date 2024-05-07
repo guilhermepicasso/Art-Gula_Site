@@ -2,8 +2,9 @@ import './index.scss';
 import React, { useState } from 'react';
 
 import { MdOutlineFileDownload } from "react-icons/md";
+import { MdOutlineCalendarMonth } from "react-icons/md";
 
-export default function ModalAdicionar() {
+export default function ModalEvento() {
 
     const [texto, setTexto] = useState('');
 
@@ -14,28 +15,24 @@ export default function ModalAdicionar() {
     };
 
     return (
-        <div className='modal-adicionar'>
+        <div className='modal-evento'>
             <div className='area_arquivo'>
                 <a className='arquivo_campo'><MdOutlineFileDownload className='icon_arquivo' /></a>
             </div>
             <div className='input_section'>
                 <div>
-                    <label for="campoDeTexto1" className='input_label'>Nome Produto:</label>
+                    <label for="campoDeTexto1" className='input_label'>Título do Evento:</label>
                     <input id="campoDeTexto1" className="input_texto" />
                 </div>
                 <div>
-                    <label for="campoDeTexto2" className='input_label'>Preço:</label>
-                    <input id="campoDeTexto2" className="input_texto" style={{ width: 120 }} />
+                    <label for="date1" className='input_label'>Dia:</label>
+                    <input id="date1" className="input_date" type='date'/>
+                    <MdOutlineCalendarMonth />
+                    <label for="date2" className='input_label'> até Dia:</label>
+                    <input id="date2" className="input_date"  type='date' />
+                    <MdOutlineCalendarMonth />
                 </div>
-
-                <div className='select'>
-                    <select id="select" class="select_grupo">
-                        <option value="" disabled selected hidden>Grupo</option>
-                        <option value="grupo 1">doceria</option>
-                        <option value="grupo 2">branch</option>
-                        <option value="grupo 3">loja</option>
-                    </select>
-                </div>
+                
 
                 <div className='text_area'>
                     <label htmlFor="campo_texto">Descrição:</label>

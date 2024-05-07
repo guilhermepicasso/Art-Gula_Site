@@ -1,8 +1,8 @@
-.modal-adicionar {
+.modal-evento {
     display: flex;
     flex-direction: column;
     width: 515px;
-    height: 590px;
+    height: 604px;
     border-radius: 10px;
     border: 1px solid #a97f2c;
     background-color: #FFFFFF;
@@ -34,23 +34,19 @@
         flex-direction: column;
         gap: 30px;
 
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            display: none !important;
+            -moz-appearance: none !important;
+            -webkit-appearance: none !important;
+           
+        }
+
         .input_texto {
             border: 0;
             border-bottom: 1px solid #B3ADA7;
             background: transparent;
             outline: 0;
-            width: 75%;
-        }
-    }
-
-    .select {
-        .select_grupo {
-            cursor: pointer;
-            width: 32%;
-            background: none transparent;
-            border: 0;
-            outline: 0;
-            border-bottom: 1px solid black;
+            width: 70%;
         }
     }
 
@@ -85,4 +81,5 @@
         }
 
     }
+
 }
