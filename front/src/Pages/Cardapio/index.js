@@ -7,7 +7,7 @@ import dados from "../../apoio/banco.json";
 
 
 export default function Cardapio() {
-    const [selectedItem, setSelectedItem] = useState("loja");
+    const [selectedItem, setSelectedItem] = useState("Loja");
     const [produtos, setProdutos] = useState(dados);
     const [subcategorias, setSubcategorias] = useState([]);
     const [produtosPorGrupo, setProdutosPorGrupo] = useState({});

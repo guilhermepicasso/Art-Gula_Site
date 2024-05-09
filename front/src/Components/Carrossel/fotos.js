@@ -9,14 +9,14 @@ export default function CarrosselFotos(props) {
     const [indice, setIndice] = useState(0);
 
     const handleChange = (event, newValue) => {
-        setIndice(newValue-1);
+        setIndice(newValue - 1);
     };
 
     return (
-        <div className='carrosselFotos' >
+        <div className='carrosselFotos'>
             <h1>Fotos</h1>
             <div className='fotos'>
-                <div className='fotoSecundaria' style={{ backgroundImage: `url(${galeria[indice-1]})` }}></div>
+                <div className='fotoSecundaria' style={{ backgroundImage: `url(${galeria[indice - 1]})` }}></div>
                 <div className='fotoPrincipal' style={{ backgroundImage: `url(${galeria[indice]})` }}></div>
                 <div className='fotoSecundaria' style={{ backgroundImage: `url(${galeria[indice + 1]})` }}></div>
             </div>
