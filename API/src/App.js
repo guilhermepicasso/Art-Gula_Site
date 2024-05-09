@@ -24,6 +24,8 @@ servidor.use(imagemController);
 // Adicionando testeController
 servidor.use(testeController);
 
+servidor.use('/storage/eventos', express.static('storage/eventos'));
+
 // Tratamento de erro genérico
 servidor.use((err, req, res, next) => {
   console.error(err.stack);

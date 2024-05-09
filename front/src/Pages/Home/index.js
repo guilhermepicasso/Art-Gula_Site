@@ -1,15 +1,19 @@
 import './index.scss';
-import Login from '../../Components/Login/Login';
+import axios from 'axios'
+
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { Link } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+
+import Login from '../../Components/Login/Login';
 import CarrosselPrincipal from '../../Components/Carrossel/principal';
 import CarrosselFotos from '../../Components/Carrossel/fotos';
 import dados from "../../apoio/banco.json";
 import CardsProdutos from '../../Components/CardProdutos/CardProdutos';
 import CarrosselCars from '../../Components/Carrossel/cards';
 import CardEvento from '../../Components/CardEvento/CardEvento';
+
 
 const style = {
   position: 'absolute',
@@ -21,6 +25,7 @@ const style = {
 export default function Home() {
   const [subcategorias, setSubcategorias] = useState([]);
   const [produtosPorSubcategoria, setProdutosPorSubcategoria] = useState({});
+  const [eventos, setEventos] = useState({});
   const [botaoSelecionado, setBotaoSelecionado] = useState(null);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -36,10 +41,22 @@ export default function Home() {
     setBotaoSelecionado(cardapio);
     const produtosFiltrados = dados.filter(dados => dados.subcategoria === cardapio);
     setProdutosPorSubcategoria(produtosFiltrados);
-    console.log(produtosFiltrados);
   };
 
   useEffect(() => {
+
+    async function fetchData() {
+      try {
+        let r = await axios.get('http://127.0.0.1:5000/evento');
+        let info = r.data;
+        setEventos(info);
+      } catch (error) {
+        console.error('Erro ao buscar os dados:', error);
+      }
+    }
+
+    fetchData();
+
     const subcategoriasArray = [];
 
     dados.forEach(item => {
@@ -55,6 +72,7 @@ export default function Home() {
 
   return (
     <div className="pagina-home">
+
       <header>
         <div className='menu'>
           <a href="">Eventos</a>
@@ -67,6 +85,7 @@ export default function Home() {
           <button onClick={handleOpen}>Acesso restrito</button>
         </div>
       </header>
+
       <Modal
         open={open}
         onClose={handleClose}
@@ -77,15 +96,15 @@ export default function Home() {
           <Login></Login>
         </Box>
       </Modal>
+
       <section className='painelPrincipal'>
         <CarrosselPrincipal imagens={imagens} tipo="Painel Principal" />
       </section>
 
       <section className='eventos'>
         <h1>Eventos</h1>
-        <CarrosselCars produtosPorSubcategoria={produtosPorSubcategoria} componente={CardEvento}></CarrosselCars>
+        <CarrosselCars produtosPorSubcategoria={eventos} componente={CardEvento}></CarrosselCars>
       </section>
-
 
       <section className='cardapios'>
         <div className='listaCardapios'>
@@ -108,6 +127,7 @@ export default function Home() {
         <div>
         </div>
       </section>
+
       <section>
         <CarrosselFotos imagens={imagens2} />
       </section>

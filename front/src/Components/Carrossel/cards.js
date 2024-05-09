@@ -22,11 +22,10 @@ export default function CarrosselCars(params) {
                 {Object.entries(params.produtosPorSubcategoria).slice(startIndex, startIndex + 3).map(([key, value]) => (
                     <div key={key}>
                         {React.createElement(params.componente, { teste: value })}
-                        {/* style={{ display: 'flex', overflowX: 'hidden', width: 'calc(100% - 120px)' }} */}
                     </div>
                 ))}
             </div>
-            <button className='buttonNext' onClick={handleNext} disabled={startIndex === (params.produtosPorSubcategoria).length - 3}> <FaChevronCircleRight /> </button>
+            <button className='buttonNext' onClick={handleNext} disabled={startIndex === (params.produtosPorSubcategoria).length - 3 || (params.produtosPorSubcategoria).length < 3}> <FaChevronCircleRight /> </button>
         </div>
     )
 }

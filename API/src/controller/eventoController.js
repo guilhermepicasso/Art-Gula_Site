@@ -10,7 +10,7 @@ const upload = multer({ dest: 'storage/eventos' })
 servidor.put('/evento/imagem/:id', upload.single('imgEvento'), async (req, resp) => {
     try {
         let id = req.params.id;
-        let imagem = req.file;
+        let imagem = req.file.path;
 
         let linhasAfetadas = await alterarImagem(id,imagem);
         if (linhasAfetadas == 0) {

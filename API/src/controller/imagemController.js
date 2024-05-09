@@ -11,7 +11,7 @@ const upload = multer({ dest: 'storage/imagensCarrosel' })
 servidor.put('/imagem/imagensCarrosel/:id', upload.single('imgCarrosel'), async (req, resp) => {
     try {
         let id = req.params.id;
-        let imagem = req.file;
+        let imagem = req.file.path;
 
         let linhasAfetadas = await alterarImagem(id,imagem);
         if (linhasAfetadas == 0) {
