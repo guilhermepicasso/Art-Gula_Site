@@ -4,6 +4,7 @@ import { salvarProduto, editarProduto, listarProdutos, deletarProduto, listarUmP
 import { listarSucategoria } from "../repository/subcategoriaRepository.js";
 
 import { Router } from "express";
+import { listarGrupo } from "../repository/gruposRepository.js";
 let servidor = Router();
 
 const upload = multer({ dest: 'storage/produtos' });
@@ -25,13 +26,15 @@ servidor.put('/produto/imagem/:id', upload.single('imgProduto'), async (req, res
 
 })
 
-servidor.post('/produto/:subcategoria', async (req, resp) => {
+servidor.post('/produto/:subcategoria/:grupo', async (req, resp) => {
     try {
         let produto = req.body;
         let subcategoria = req.params.subcategoria;
+        let grupo = req.params.grupo;
         await listarSucategoria(subcategoria);
+        await listarGrupo(grupo);
 
-        let produtoInserido = await salvarProduto(subcategoria, produto);
+        let produtoInserido = await salvarProduto(subcategoria, grupo, produto);
         resp.status(200).json(produtoInserido);
     } catch (error) {
         resp.status(500).json({ error: error.message });

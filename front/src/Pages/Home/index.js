@@ -9,7 +9,7 @@ import React, { useEffect, useState } from 'react';
 import Login from '../../Components/Login/Login';
 import CarrosselPrincipal from '../../Components/Carrossel/principal';
 import CarrosselFotos from '../../Components/Carrossel/fotos';
-import dados from "../../apoio/banco.json";
+// import dados from "../../apoio/banco.json";
 import CardsProdutos from '../../Components/CardProdutos/CardProdutos';
 import CarrosselCars from '../../Components/Carrossel/cards';
 import CardEvento from '../../Components/CardEvento/CardEvento';
@@ -23,6 +23,8 @@ const style = {
 };
 
 export default function Home() {
+  const [produtos, setProdutos] = useState();
+  const [dadosSubcategorias, setDadosSubcategorias] = useState([]);
   const [subcategorias, setSubcategorias] = useState([]);
   const [produtosPorSubcategoria, setProdutosPorSubcategoria] = useState({});
   const [eventos, setEventos] = useState({});
@@ -39,7 +41,7 @@ export default function Home() {
 
   const handleBotaoClick = (cardapio) => {
     setBotaoSelecionado(cardapio);
-    const produtosFiltrados = dados.filter(dados => dados.subcategoria === cardapio);
+    const produtosFiltrados = produtos.filter(produtos => produtos.nomeSubcategoria === cardapio);
     setProdutosPorSubcategoria(produtosFiltrados);
   };
 
@@ -47,27 +49,32 @@ export default function Home() {
 
     async function fetchData() {
       try {
-        let r = await axios.get('http://127.0.0.1:5000/evento');
-        let info = r.data;
+        let eventos = await axios.get('http://127.0.0.1:5000/evento');
+        let info = eventos.data;
         setEventos(info);
+
+        let produtos = await axios.get('http://127.0.0.1:5000/produto');
+        let infoProdutos = produtos.data;
+        setProdutos(infoProdutos);
+        
+        const subcategoriasArray = [];
+        infoProdutos.forEach(item => {
+          if (!subcategoriasArray.includes(item.nomeSubcategoria)) {
+            subcategoriasArray.push(item.nomeSubcategoria);
+          }
+        });
+        setSubcategorias(subcategoriasArray);
+        setBotaoSelecionado(subcategoriasArray[0]);
+        const produtosFiltrados = infoProdutos.filter(infoProdutos => infoProdutos.nomeSubcategoria === subcategoriasArray[0]);
+        setProdutosPorSubcategoria(produtosFiltrados);
+        console.log(produtosFiltrados);
+
       } catch (error) {
         console.error('Erro ao buscar os dados:', error);
       }
     }
 
     fetchData();
-
-    const subcategoriasArray = [];
-
-    dados.forEach(item => {
-      if (!subcategoriasArray.includes(item.subcategoria)) {
-        subcategoriasArray.push(item.subcategoria);
-      }
-    });
-    setSubcategorias(subcategoriasArray);
-    setBotaoSelecionado(subcategoriasArray[0]);
-    const produtosFiltrados = dados.filter(dados => dados.subcategoria === subcategoriasArray[0]);
-    setProdutosPorSubcategoria(produtosFiltrados);
   }, []);
 
   return (
@@ -75,8 +82,8 @@ export default function Home() {
 
       <header>
         <div className='menu'>
-          <a href="">Eventos</a>
-          <Link to="./cardapio">Cardápio</Link>
+          <a href="#eventos">Eventos</a>
+          <a href="#cardapios">Cardápio</a>
           <a href="">Sobre</a>
           <a href="">Localização</a>
         </div>
@@ -101,12 +108,12 @@ export default function Home() {
         <CarrosselPrincipal imagens={imagens} tipo="Painel Principal" />
       </section>
 
-      <section className='eventos'>
+      <section className='eventos' id='eventos'>
         <h1>Eventos</h1>
         <CarrosselCars produtosPorSubcategoria={eventos} componente={CardEvento}></CarrosselCars>
       </section>
 
-      <section className='cardapios'>
+      <section className='cardapios' id='cardapios'>
         <div className='listaCardapios'>
           <div className='botoesLista'>
             {subcategorias.map((cardapio, index) => (
@@ -119,7 +126,7 @@ export default function Home() {
               </button>
             ))}
           </div>
-          <a href='http://localhost:3000/cardapio'>VER CARDÁPIO {botaoSelecionado} COMPLETO</a>
+          <a href='http://localhost:3000/cardapio'>VER CARDÁPIO <Link to={`./cardapio/${botaoSelecionado}`}>{botaoSelecionado}</Link> COMPLETO</a>
         </div>
         <div className='carrosselCards'>
           <CarrosselCars produtosPorSubcategoria={produtosPorSubcategoria} componente={CardsProdutos}></CarrosselCars>
@@ -128,7 +135,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
+      <section id='carrosselFotos'>
         <CarrosselFotos imagens={imagens2} />
       </section>
 

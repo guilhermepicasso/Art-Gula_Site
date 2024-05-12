@@ -3,6 +3,7 @@ import eventoController from "../src/controller/eventoController.js"
 import subcategoriaController from "../src/controller/subcategoriaController.js"
 import categoriaController from "../src/controller/categoriaController.js";
 import imagemController from "../src/controller/imagemController.js";
+import gruposController from "../src/controller/gruposController.js";
 
 import testeController from "../src/controller/testController.js"; // Corrigido o nome do arquivo
 
@@ -20,11 +21,10 @@ servidor.use(eventoController);
 servidor.use(subcategoriaController);
 servidor.use(categoriaController);
 servidor.use(imagemController);
-
-// Adicionando testeController
-servidor.use(testeController);
+servidor.use(gruposController);
 
 servidor.use('/storage/eventos', express.static('storage/eventos'));
+servidor.use('/storage/produtos', express.static('storage/produtos'));
 
 // Tratamento de erro genérico
 servidor.use((err, req, res, next) => {

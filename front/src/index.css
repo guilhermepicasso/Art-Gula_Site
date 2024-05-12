@@ -1,6 +1,6 @@
 html{
   background-color: var(--cor-principal);
-  /* overflow: hidden; */
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;

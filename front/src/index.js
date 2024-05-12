@@ -15,7 +15,7 @@ root.render(
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/painel' element={<Painel/>}/>
-        <Route path='/cardapio' element={<Cardapio/>}/>
+        <Route path='/cardapio/:cardapio' element={<Cardapio/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

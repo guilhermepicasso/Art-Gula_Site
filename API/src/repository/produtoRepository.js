@@ -1,6 +1,6 @@
 import con from "./conection.js";
 
-export async function salvarProduto(subcategoria, produto) {
+export async function salvarProduto(subcategoria, grupo, produto) {
     try {
         let comando = `
         insert into produto (
@@ -9,10 +9,9 @@ export async function salvarProduto(subcategoria, produto) {
             valorProduto, 
             pesoProduto,
             grupoProduto,
-            subcategoriaProduto,
-            imagem
+            subcategoriaProduto
             )
-        values (?, ?, ?, ?, ?, ?, ?)
+        values (?, ?, ?, ?, ?, ?)
         `
 
         let resp = await con.query(comando, [
@@ -20,9 +19,8 @@ export async function salvarProduto(subcategoria, produto) {
             produto.descricaoProduto,
             produto.valorProduto,
             produto.pesoProduto,
-            produto.grupoProduto,
-            subcategoria,
-            produto.imagem
+            grupo,
+            subcategoria
         ]);
         let info = resp[0];
 
@@ -41,7 +39,11 @@ export async function salvarProduto(subcategoria, produto) {
 
 export async function listarProdutos() {
     try {
-        let comando = `select * from produto`
+        let comando = `select produto.*, subcategoria.nomeSubcategoria, grupos.nomeGrupo 
+        from produto 
+        inner join subcategoria on produto.subcategoriaProduto = subcategoria.idSubcategoria
+        inner join grupos on produto.grupoProduto = grupos.idGrupo
+        `
         let resp = await con.query(comando, []);
         let linhas = resp[0];
         return linhas;
@@ -97,7 +99,7 @@ export async function editarProduto(subacategoria, id, produto) {
             valorProduto = ?, 
             pesoProduto = ?,
             subcategoriaProduto = ?,
-            imagem = ?
+            grupoProduto = ?
             WHERE idProduto = ?
         `;
 
@@ -107,7 +109,7 @@ export async function editarProduto(subacategoria, id, produto) {
             produto.valorProduto,
             produto.pesoProduto,
             subacategoria,
-            produto.imagem,
+            produto.grupoProduto,
             id
         ]);
 
