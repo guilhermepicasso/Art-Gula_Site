@@ -9,10 +9,9 @@ export async function salvarEvento(evento) {
                 dataFinal,
                 horaInicio,
                 horaFim,
-                descricaoEvento,    
-                imagem
+                descricaoEvento
             )
-            values (?,?,?,?,?,?,?)
+            values (?,?,?,?,?,?)
         `;
 
         let resp = await con.query(comando, [
@@ -21,8 +20,7 @@ export async function salvarEvento(evento) {
             evento.dataFinal,
             evento.horaInicio,
             evento.horaFim,
-            evento.descricaoEvento,
-            evento.imgEvento
+            evento.descricaoEvento
         ]);
         let info = resp[0];
 
@@ -71,8 +69,7 @@ export async function editarEvento(id, evento) {
         dataFinal = ?,
         horaInicio = ?,
         horaFim = ?,
-        descricaoEvento = ?,
-        imagem = ?
+        descricaoEvento = ?
         WHERE idEventos = ?
         `;
 
@@ -83,7 +80,6 @@ export async function editarEvento(id, evento) {
             evento.horaInicio,
             evento.horaFim,
             evento.descricaoEvento,
-            evento.imgEvento,
             id
         ]);
 
@@ -114,17 +110,17 @@ export async function deletarEvento(id, evento) {
 export async function alterarImagem(id, caminho) {
     try {
         let comando = `
-      update eventos
-         set imgEvento = ?
-       where idEventos = ?
-    `
-  
-    let resp = await con.query(comando, [caminho, id]);
-    let info = resp[0];
-  
-    return info.affectedRows;
+        UPDATE eventos SET
+        imagem = ?
+        WHERE idEventos = ?
+        `;
+
+        let resp = await con.query(comando, [caminho, id]);
+        let info = resp[0];
+
+        return info.affectedRows;
     } catch (error) {
         throw new Error('Erro ao executar o comando SQL: ' + error.message);
     }
-    
-  }
+
+}

@@ -5,6 +5,7 @@
 
 html{
   background-color: var(--cor-principal);
+  scroll-behavior: smooth;
 }
 body {
   margin: 0;

@@ -1,5 +1,5 @@
 import { salvarSubcategoria, listarSucategorias, editarSubcategoria, deletarSubcategoria, listarSucategoria, listarSubcategoriasCategoria } from "../repository/subcategoriaRepository.js";
-import { deletarProduto } from "../repository/produtoRepository.js"
+import { deletarProduto, listarProdutosSubcategoria } from "../repository/produtoRepository.js"
 import { Router } from "express";
 import { listarCategoria } from "../repository/categoriaRepository.js";
 let servidor = Router();
@@ -7,7 +7,7 @@ let servidor = Router();
 servidor.post('/subcategoria/:categoria', async (req, resp) => {
     try {
         let subcategoria = req.body;
-        let categoria = req.params.id;
+        let categoria = req.params.categoria;
         let listaCategorias = await listarCategoria(categoria);
         if (listaCategorias.length < 1) {
             throw new Error("Nenhuma categoria Encontrada!");

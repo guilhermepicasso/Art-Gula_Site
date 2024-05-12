@@ -1,5 +1,5 @@
 import { salvarCategoria, listarCategorias, editarCategoria, deletarCategoria, listarCategoria } from "../repository/categoriaRepository.js";
-import { deletarSubcategoria } from "../repository/subcategoriaRepository.js";
+import { deletarSubcategoria, listarSubcategoriasCategoria } from "../repository/subcategoriaRepository.js";
 
 import { Router } from "express";
 let servidor = Router();

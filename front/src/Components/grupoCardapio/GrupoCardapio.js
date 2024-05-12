@@ -15,6 +15,7 @@ export default function GrupoCardapio(params) {
         ovosmexidos,
         panquecas
     ];
+    console.log(produtosPorGrupo);
 
     return (
         <div className="grupo-cardapio">
@@ -33,11 +34,11 @@ export default function GrupoCardapio(params) {
                         {produtosPorGrupo[grupo].map((produto, index) => (
                             <div className="produto" key={`produto-${index}`}>
                                 <div className="cabecalho">
-                                    <div className="titulo"><h3>{produto.title}</h3></div>
-                                    <div className="preco"><p>{produto.preco}</p></div>
+                                    <div className="titulo"><h3>{produto.nomeProduto}</h3></div>
+                                    <div className="preco"><p>{produto.valorProduto}</p></div>
                                 </div>
                                 <div className="descricao">
-                                    <p>{produto.descricao}</p>
+                                    <p>{produto.descricaoProduto}</p>
                                 </div>
                             </div>
                         ))}
