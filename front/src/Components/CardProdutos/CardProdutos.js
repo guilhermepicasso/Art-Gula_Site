@@ -1,6 +1,7 @@
 import './index.scss';
 
 export default function CardsProdutos(params) {
+    console.log("parametro da imagem de produto = "+params.teste.imagem);
     return (
         <div className="cardsProduto">
             <div className="image-container">

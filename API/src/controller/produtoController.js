@@ -45,7 +45,7 @@ servidor.get('/produto', async (req, resp) => {
     try {
         let listaProdutos = await listarProdutos();
         if (listaProdutos.length === 0) {
-            throw new Error("Nenhum produto encontrado!");
+            return resp.status(204).send("Nenhum produto encontrado!");
         }
         resp.status(200).json(listaProdutos);
     } catch (error) {

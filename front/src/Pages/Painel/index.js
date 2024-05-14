@@ -1,41 +1,48 @@
 import './index.scss';
-import axios from 'axios';
 import { AiFillHome } from "react-icons/ai";
 import { MdOutlineMenuBook } from "react-icons/md";
-import Tela_Info_Painel from '../../Components/TelaInfoPainel/TelaInfoPainel.js';
+import TelaInfoPainel from '../../Components/TelaInfoPainel/TelaInfoPainel.js';
 import React, { useEffect, useState } from 'react';
+import { buscarDados } from '../../Service/api.service';
 
 export default function Painel() {
-    const [selectedItem, setSelectedItem] = useState("Cardápio");
-    const [categorias, setCategorias] = useState(["Eventos", "Fotos"]);
-    const [cardapios, setCardapios] = useState([]);
-    const [selectedArray, setSelectedArray] = useState(cardapios);
+    const categorias = { nomeSubcategorias: ["Eventos", "Fotos", "mais"], idSubcategorias: [0, 1, 2] };
+    const [selectedItem, setSelectedItem] = useState("Painel de Controle");
+    const [produtos, setProdutos] = useState();
+    const [cardapios, setCardapios] = useState({});
+    const [selectedArray, setSelectedArray] = useState({});
 
     const handleSelectItem = (item) => {
         setSelectedItem(item);
         let escolha = [];
         escolha = selectedItem === 'Cardápio' ? categorias : cardapios;
         setSelectedArray(escolha);
-        console.log(escolha);
     };
 
     useEffect(() => {
+        setSelectedArray(categorias);
         async function fetchData() {
             try {
-                let listaCardapios = await axios.get('http://127.0.0.1:5000/subcategorias/categoria/7');
-                const nomeSubcategorias = listaCardapios.data.map(item => item.nomeSubcategoria);
-                console.log(nomeSubcategorias);
-                setCardapios(nomeSubcategorias);
+                const infoProdutos = await buscarDados("produto");
+                setProdutos(infoProdutos);
+
+                let listaCardapios = await buscarDados("subcategoria");
+                if (listaCardapios && listaCardapios.length > 0) {
+                    const nomeSubcategorias = listaCardapios.map(item => item.nomeSubcategoria);
+                    const idSubcategorias = listaCardapios.map(item => item.idSubcategoria);
+                    const teste = { nomeSubcategorias: nomeSubcategorias, idSubcategorias: idSubcategorias } 
+                    setCardapios(teste);
+                    console.log("teste é "+teste);
+                } else {
+                    console.log("Lista de cardápios vazia.");
+                }
             } catch (error) {
-                console.error('Erro ao buscar os dados:', error);
+                console.error('Erro ao buscar os dados PAINEL:', error);
             }
         }
         fetchData();
     }, [])
 
-
-
-    //visibility: params.titulo === "Cardápio" ? 'visible' : 'hidden'
     return (
         <main className='telaPianel'>
             <section className='toolBar'>
@@ -55,7 +62,7 @@ export default function Painel() {
                     </nav>
                 </div>
             </section>
-            <Tela_Info_Painel titulo={selectedItem} vetor={selectedArray}></Tela_Info_Painel>
+            <TelaInfoPainel titulo={selectedItem} vetor={selectedArray} produtos={produtos}></TelaInfoPainel>
         </main>
     )
 }
