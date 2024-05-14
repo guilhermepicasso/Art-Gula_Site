@@ -134,14 +134,13 @@ export default function Home() {
         <div>
         </div>
       </section>
-
       <section id='carrosselFotos'>
         <CarrosselFotos imagens={imagens2} />
       </section>
       <section className='sobre'>
-        <img src='/assets/img/tituloArtEGula.png'></img>
+        <img className='logo_artgula' src='/assets/img/tituloArtEGula.png'></img>
         <div className='conteudo_sobre'>
-          <img src='/assets/img/fotoDona.png'></img>
+          <img className='fotoDona' src='/assets/img/fotoDona.png'></img>
           <p>Somos a Art & Gula, uma doceria e café localizada no
             charmoso bairro de Moema em São Paulo.
             Nossa loja foi pensada para proporcionar uma
@@ -149,11 +148,30 @@ export default function Home() {
             Nosso espaço é perfeito para você relaxar e também
             realizar sua festa de aniversário ou evento.
             Nós criamos bolos, doces e salgadinhos e atendemos
-            o corporativo.<br/>
+            o corporativo.<br />
             Nossos salgados são todos fabricações própria e se
             destacam pela qualidade. Nossa especialidade são os
             salgados congelados, que atendem o varejo e o atacado.</p>
         </div>
+      </section>
+      <section className='maps'>
+
+        <div className='googleMaps'>
+          <iframe
+            width="100%"
+            height="420"
+            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Av.%20Jurema,%20401%20-%20Moema,%20S%C3%A3o%20Paulo%20-%20SP,%2004079-001+(Art&amp;Gula)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+          >
+            <a href="https://www.gps.ie/">gps systems</a>
+          </iframe>
+        </div>
+        <p>Endereço: Av. Jurema, 401 - Moema,<br />
+          São Paulo - SP, 04079-001<br />
+          Telefone: (11) 95865-5550<br />
+          Horário de Funcionamento:<br />
+          Terça à Sexta: 10h - 19h<br />
+          Sábado, Domingo e feriados: 9h - 19h
+        </p>
 
 
       </section>
