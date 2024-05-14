@@ -56,7 +56,7 @@ export default function Home() {
         let produtos = await axios.get('http://127.0.0.1:5000/produto');
         let infoProdutos = produtos.data;
         setProdutos(infoProdutos);
-        
+
         const subcategoriasArray = [];
         infoProdutos.forEach(item => {
           if (!subcategoriasArray.includes(item.nomeSubcategoria)) {
@@ -138,6 +138,26 @@ export default function Home() {
       <section id='carrosselFotos'>
         <CarrosselFotos imagens={imagens2} />
       </section>
+      <section className='sobre'>
+        <img src='/assets/img/tituloArtEGula.png'></img>
+        <div className='conteudo_sobre'>
+          <img src='/assets/img/fotoDona.png'></img>
+          <p>Somos a Art & Gula, uma doceria e café localizada no
+            charmoso bairro de Moema em São Paulo.
+            Nossa loja foi pensada para proporcionar uma
+            experiência inesquecível e instagramável.
+            Nosso espaço é perfeito para você relaxar e também
+            realizar sua festa de aniversário ou evento.
+            Nós criamos bolos, doces e salgadinhos e atendemos
+            o corporativo.<br/>
+            Nossos salgados são todos fabricações própria e se
+            destacam pela qualidade. Nossa especialidade são os
+            salgados congelados, que atendem o varejo e o atacado.</p>
+        </div>
+
+
+      </section>
+
 
     </div>
   );
