@@ -154,6 +154,16 @@ export default function Home() {
             salgados congelados, que atendem o varejo e o atacado.</p>
         </div>
       </section>
+      <section className='avaliacao'>
+        <div>
+          <img className='avaliacaoImg' src='/assets/img/avaliacao1.png'></img>
+          <img className='avaliacaoImg' src='/assets/img/avaliacao2.png'></img>
+        </div>
+        <img className='avaliacaoImg' src='/assets/img/avaliacao3.png'></img>
+        <img className='nota' src='/assets/img/nota.png'></img>
+
+
+      </section>
       <section className='maps'>
 
         <div className='googleMaps'>
@@ -175,6 +185,34 @@ export default function Home() {
 
 
       </section>
+      <footer className='rodape'>
+        
+        <img className='logo_rodape' src='/assets/img/logo circular.png'></img>
+        <div className='item_rodape'>
+          <div >
+            <h4>Produtos</h4>
+            <ul>
+              <li><a href='#'>Páscoa</a></li>
+              <li><a href='#'>Bebidas</a></li>
+              <li><a href='#'>Doceria</a></li>
+              <li><a href='#'>Brunch</a></li>
+              <li><a href='#'>Cardapios</a></li>
+            </ul>
+          </div>
+
+          <div >
+            <h4>local</h4>
+            <ul>
+              <li><a href='#'>Sobre a gente</a></li>
+              <li><a href='#'>iFood</a></li>
+              <li><a href='#'>WhatsApp</a></li>
+              <li><a href='#'>Equipe</a></li>
+              <li><a href='#'>Contate a gente</a></li>
+            </ul>
+          </div>
+
+        </div>
+      </footer>
 
 
     </div>
