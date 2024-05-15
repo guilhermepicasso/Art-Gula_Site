@@ -6,11 +6,11 @@ import React, { useEffect, useState } from 'react';
 import { buscarDados } from '../../Service/api.service';
 
 export default function Painel() {
-    const categorias = { nomeSubcategorias: ["Eventos", "Fotos", "mais"], idSubcategorias: [0, 1, 2] };
+    const categorias = { nomeSubcategorias: ["Eventos", "Fotos"], idSubcategorias: [0, 1] };
     const [selectedItem, setSelectedItem] = useState("Painel de Controle");
     const [produtos, setProdutos] = useState();
     const [cardapios, setCardapios] = useState({});
-    const [selectedArray, setSelectedArray] = useState({});
+    const [selectedArray, setSelectedArray] = useState(categorias);
 
     const handleSelectItem = (item) => {
         setSelectedItem(item);
@@ -19,23 +19,27 @@ export default function Painel() {
         setSelectedArray(escolha);
     };
 
+    const atualizarCardapio = async (item) => {
+        let listaCardapios = await buscarDados("subcategoria");
+        if (listaCardapios && listaCardapios.length > 0) {
+            const nomeSubcategorias = listaCardapios.map(item => item.nomeSubcategoria);
+            const idSubcategorias = listaCardapios.map(item => item.idSubcategoria);
+            const teste = { nomeSubcategorias: nomeSubcategorias, idSubcategorias: idSubcategorias }
+            setCardapios(teste);
+            setSelectedItem(item);
+        } else {
+            console.log("Lista de cardápios vazia.");
+        }
+    }
+
     useEffect(() => {
-        setSelectedArray(categorias);
         async function fetchData() {
             try {
                 const infoProdutos = await buscarDados("produto");
                 setProdutos(infoProdutos);
 
-                let listaCardapios = await buscarDados("subcategoria");
-                if (listaCardapios && listaCardapios.length > 0) {
-                    const nomeSubcategorias = listaCardapios.map(item => item.nomeSubcategoria);
-                    const idSubcategorias = listaCardapios.map(item => item.idSubcategoria);
-                    const teste = { nomeSubcategorias: nomeSubcategorias, idSubcategorias: idSubcategorias } 
-                    setCardapios(teste);
-                    console.log("teste é "+teste);
-                } else {
-                    console.log("Lista de cardápios vazia.");
-                }
+                await atualizarCardapio(selectedItem);
+
             } catch (error) {
                 console.error('Erro ao buscar os dados PAINEL:', error);
             }
@@ -62,7 +66,7 @@ export default function Painel() {
                     </nav>
                 </div>
             </section>
-            <TelaInfoPainel titulo={selectedItem} vetor={selectedArray} produtos={produtos}></TelaInfoPainel>
+            <TelaInfoPainel titulo={selectedItem} vetor={selectedArray} produtos={produtos} ></TelaInfoPainel>
         </main>
     )
 }

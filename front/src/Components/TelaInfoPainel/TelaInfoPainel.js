@@ -2,10 +2,10 @@ import './index.scss';
 import axios from 'axios';
 import { MdEdit, MdDelete } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import ModalCardapio from "../ModalCardapio";
+import ModalCardapio from '../ModalCardapio';
 import ModalAdicionar from '../ModalAdicionar';
 
 const style = {
@@ -17,30 +17,32 @@ const style = {
 
 
 export default function TelaInfoPainel(params) {
-    console.log(params.vetor);
     const [componente, setComponente] = useState();
     const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen(false);
 
-    const handleOpen = (item) => {
-        setComponente(item);
+    useEffect(() => {},[open])
+
+    const handleOpen = (cardapio, item) => {
+        const teste = React.createElement(item, {cardapio: cardapio, handleClose: handleClose });
+        setComponente(teste);
         setOpen(true);
     };
-
-    const handleClose = () => setOpen(false);
 
     async function deletarProduto(produto) {
         try {
             await axios.delete(`http://127.0.0.1:5000/produto/${produto}`);
-            console.log("cardapio deletado");
         } catch (error) {
             console.log("erro ao deletar cardápio", error);
         }
     }
 
-    async function deletarCardapio(cardapio) {
+    async function deletarCardapio(cardapio, titulo) {
         try {
-            await axios.delete(`http://127.0.0.1:5000/subcategoria/${cardapio}`);
-            alert("cardápio deletado");
+            const resp = await axios.delete(`http://127.0.0.1:5000/subcategoria/${cardapio}`);
+            if (resp.status === 200) {
+                alert("cardápio deletado");
+            }
         } catch (error) {
             alert("erro ao deletar cardápio", error);
         }
@@ -79,6 +81,7 @@ export default function TelaInfoPainel(params) {
                     </Modal>
                     <p>{produto.nomeProduto}</p>
                     <p>{produto.nomeGrupo}</p>
+                    <p>{produto.valorProduto}</p>
                     <div>
                         <button className='editar' ><MdEdit /> Editar</button>
                         <button className='deletar' onClick={() => deletarProduto(produto.idProduto)}><MdDelete /> Deletar</button>
@@ -87,6 +90,17 @@ export default function TelaInfoPainel(params) {
             ));
         }
     };
+
+    if (!params.vetor || !params.vetor.nomeSubcategorias || !Array.isArray(params.vetor.nomeSubcategorias)) {
+        return (
+            <section className='telaInfo'>
+                <h1 className='titulo'>{params.titulo}</h1>
+                <div className='tabelas'>
+                    <h1>Nenhuma tabela encontrada ou cadastrada</h1>
+                </div>
+            </section>
+        );
+    }
 
     return (
         <section className='telaInfo'>
@@ -97,13 +111,13 @@ export default function TelaInfoPainel(params) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    {React.cloneElement(componente, { handleClose: handleClose })}
+                    {componente}
                 </Box>
             </Modal>
             <h1 className='titulo'>{params.titulo}</h1>
             <button className='addCardapio add'
                 style={{ visibility: params.titulo === "Cardápio" ? 'visible' : 'hidden' }}
-                onClick={() => handleOpen(<ModalCardapio />)}
+                onClick={() => handleOpen(params.titulo,ModalCardapio)}
             >
                 <FaPlus />
                 Adicionar Cardápio
@@ -125,12 +139,13 @@ export default function TelaInfoPainel(params) {
                                     <MdEdit />
                                     Editar Cardápio
                                 </button>
-                                <button className='add' onClick={() => handleOpen(<ModalAdicionar />)}><FaPlus /> Adicionar Produto</button>
+                                <button className='add' onClick={() => handleOpen(params.vetor.idSubcategorias[index], ModalAdicionar)}><FaPlus /> Adicionar Produto</button>
                             </div>
                         </div>
                         <div className='cabecalhoTabela itens'>
                             <p>Título</p>
                             <p>Grupo</p>
+                            <p>Preço</p>
                             <p>Ações</p>
                         </div>
                         {renderizarProdutosPorSubcategoria(nomeSubcategoria)}

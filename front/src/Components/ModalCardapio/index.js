@@ -1,4 +1,5 @@
 import './index.scss';
+import axios from "axios";
 import React, { useState } from 'react';
 
 export default function ModalCardapio({ handleClose }) {
@@ -8,13 +9,36 @@ export default function ModalCardapio({ handleClose }) {
 
     const handleChangeCardapioInput = (event) => {
         setCardapio(event.target.value);
-       
     };
 
-    const salvarCardapio = (cardapio) => {
-        alert('salvou o cardapio '+cardapio);
-        console.log(tags);
-        handleClose();
+    const addGrupoAoCardapio = async (tags, idCardapio) => {
+        try {
+            for (const tag of tags) {
+                const body = { nomeGrupo: tag };
+                await axios.post(`http://127.0.0.1:5000/grupo/${idCardapio}`, body);
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    const salvarCardapio = async (cardapio) => {
+        if (cardapio !== "" || tags !== null) {
+            try {
+                const body = { nomeSubcategoria: cardapio };
+                const resp = await axios.post("http://127.0.0.1:5000/subcategoria/7", body);
+                if (resp.status === 200) {
+                    addGrupoAoCardapio(tags, resp.data.id);
+                    alert('Cardápio ' + cardapio + " com os grupos " + tags);
+                    handleClose();
+                    window.location.reload();
+                }
+            } catch (error) {
+                alert.error("Erro ao salvar o cardápio! ", error);
+            }
+        } else {
+            alert("Todos os campos devem ser preenchidos e ao menos 1 grupo adicionado!")
+        }
     }
 
     const handleChangeGrupoInput = (event) => {
@@ -59,10 +83,10 @@ export default function ModalCardapio({ handleClose }) {
                             }
                         }} />
                     </div>
-                        <a className='button_adcionar' onClick={handleAddTag}>+ Adicionar Grupo cardapio</a>
+                    <a className='button_adcionar' onClick={handleAddTag}>+ Adicionar Grupo cardapio</a>
                 </div>
             </div>
-            <button className='button_salvar' onClick={() => {salvarCardapio(cardapio)}}>Salvar</button>
+            <button className='button_salvar' onClick={() => { salvarCardapio(cardapio) }}>Salvar</button>
         </div>
     );
 

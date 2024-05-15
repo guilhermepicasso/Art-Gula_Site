@@ -50,16 +50,7 @@ export default function Home() {
       try {
         const eventos = await buscarDados("evento")
         setEventos(eventos);
-
-        const infoProdutos = await buscarDados("produto");
-        setProdutos(infoProdutos);
-        if (infoProdutos && infoProdutos.length > 0) {
-          const produtosFiltrados = infoProdutos.filter(infoProdutos => infoProdutos.nomeSubcategoria === nomesubcategoriasArray[0]);
-          setProdutosPorSubcategoria(produtosFiltrados);
-        } else {
-          console.log("Lista de produtos vazia.");
-        }
-
+        
         let subcategorias = await buscarDados("subcategoria");
 
         const nomesubcategoriasArray = [];
@@ -71,11 +62,20 @@ export default function Home() {
         setSubcategorias(nomesubcategoriasArray);
         setBotaoSelecionado(nomesubcategoriasArray[0]);
 
+        const infoProdutos = await buscarDados("produto");
+        setProdutos(infoProdutos);
+        if (infoProdutos && infoProdutos.length > 0) {
+          const produtosFiltrados = infoProdutos.filter(infoProdutos => infoProdutos.nomeSubcategoria === nomesubcategoriasArray[0]);
+          setProdutosPorSubcategoria(produtosFiltrados);
+        } else {
+          console.log("Lista de produtos vazia.");
+        }
+
+
       } catch (error) {
         console.error('Erro ao buscar os dados HOME:', error);
       }
     }
-
     fetchData();
   }, []);
 
