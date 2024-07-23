@@ -1,8 +1,36 @@
-# Projeto da aula de Desenv. WEB
+# Site Art&Gula
 
-Repositório destinado a construção do site para a aula de Desenvolvimento WEB do 4º semestre do curso de TADS.
+## Descrição
+**Art&Gula** é um site desenvolvido para uma aconchegante doceria e cafeteria localizada no charmoso bairro de Moema, em São Paulo. A Art&Gula é especializada em bolos, docinhos, salgados, doces personalizados e tematizados. O site funciona como uma vitrine online, além de oferecer uma tela de login funcional e uma área de administração para gerenciar o conteúdo.
 
-## Aos desenvolvedores
+## Funcionalidades
+- **Landing Page:**
+  - Exibição de produtos e serviços oferecidos pela Art&Gula.
+  - Galeria de imagens do estabelecimento e dos produtos.
+  - Informações de contato e localização.
+
+- **Tela de Login:**
+  - Autenticação de usuários.
+
+- **Área de Administração:**
+  - Acesso restrito apenas para administradores.
+  - Gerenciamento de cardápios, produtos, eventos e imagens do estabelecimento.
+  - Criação, leitura, atualização e exclusão (CRUD) de cardápios,produtos,imagens e eventos.
+
+## Tecnologias Utilizadas
+- **Frontend:**
+  - **React.js:** Biblioteca JavaScript para construção da interface do usuário.
+  - **Javascript:** Principal linguagem do projeto.
+  - **HTML/SASS:** Documentação base das paginas e estilização.
+  - **Axios:** Biblioteca para realizar requisições HTTP.
+
+- **Backend:**
+  - **Node.js:** Ambiente de execução para JavaScript no servidor.
+  - **Express.js:** Framework para Node.js.
+  - **MySQL:** Banco de dados relacional.
+  - **Multer** Ferramenta para criação de pastas Storage e armazenamento de imagem.
+
+# Aos desenvolvedores
 Quando fazer o clone deste repositório crie uma branch para realizar seus trabalhos e faça as alterações nela. Para isso siga as instruções:
 
 ```
@@ -50,5 +78,4 @@ git checkout Nome_da_Branch
 ```
 git merge nain
 ```
-### SOBRE O PROJETO
 Bibliotecas e arquivos pesados como a pasta nodemon_modules devem ficar em um arquivo **.gitignore**, mas lembre-se, sempre que for clonar o repositório para uma máquina diferente, terá que importar novamente as bibliotecas e arquivos pois não ficam salvos no gitHub.
