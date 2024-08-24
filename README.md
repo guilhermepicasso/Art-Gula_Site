@@ -30,52 +30,127 @@
   - **MySQL:** Banco de dados relacional.
   - **Multer** Ferramenta para criação de pastas Storage e armazenamento de imagem.
 
-# Aos desenvolvedores
-Quando fazer o clone deste repositório crie uma branch para realizar seus trabalhos e faça as alterações nela. Para isso siga as instruções:
+## Setup
 
-```
-git checkout -b Nome_da_Branch
-```
-Você já estará na branch que criou e pode realizar as alterações que deseja.
+Para configurar o ambiente de desenvolvimento FullStack do sistema, siga os passos abaixo:
 
-Quando terminar poderá subir suas alterações para o gitHub com os seguintes comandos:
+### Pré-requisitos
 
-```
-git add .
-git commit -m "Frase que deseja salvar o commit"
-git push origin Nome_da_Branch
-```
-Depois envie suas alterações para a branch main
-- Volte para a branch main
-```
-git checkout main
-```
-- Envie suas alterações
-```
-git merge nome-da-sua-branch
-```
-- Por fim salve no repositório do gitHub
-```
-git add .
-git commit -m "Frase que deseja salvar o commit"
-git push
+Certifique-se de ter o Node.js e o npm instalados. Você pode verificar isso com os seguintes comandos:
+
+```bash
+node -v
+npm -v
 ```
 
-**Você também pode fazer isso diretamente pelo gitHub através de um PullRequest
-### IMPORTANTE
-Sempre que for iniciar um trabalho na sua branch garanta que ela esteja atualizada usando o mesmo comando de merge mas agora puchando as alterações da main para sua branch
+### 1. Clone o Repositório
 
-- Antes de trazer as alterações da branch principal para a sua branch de desenvolvimento, é uma boa prática garantir que você tenha as últimas alterações da branch principal.
+```bash
+git clone https://github.com/guilhermepicasso/Art-Gula_Site.git
 ```
-git checkout main
-git pull origin main
+### 2. Instale as Dependências
+
+Certifiquece de instalar as dependências de ambas as partes, frontend e backend.
+
+####FrontEnd
+
+```bash
+cd front
+npm install
 ```
-- Depois vá para sua branch
+
+####BackEnd
+
+```bash
+cd API
+npm install
 ```
-git checkout Nome_da_Branch
+
+### 3.Configure o Banco de Dados
+Para o programa funcionar você precisa ter instalado na sua máquina o MySQL Workbench e inserir a database do sistema.Caso não saiba utilizar a ferramenta aconselho a seguir esse tutorial : https://www.alura.com.br/artigos/mysql-do-download-e-instalacao-ate-sua-primeira-tabela?srsltid=AfmBOooNptdzLpCDZzjtEjxHK5ImigrIHQZmg6w-a9p8lOBwnX_y_xpw
+#### Database do sistema
+```sql
+CREATE database Loja;
+USE Loja;
+
+create table cardapio(
+	id int auto_increment primary key,
+    nome varchar(50) not null
+);
+
+create table grupo(
+	id int auto_increment primary key,
+    nome varchar(50),
+    idCardapio int,
+    foreign key (idCardapio) references cardapio(id)
+);
+
+create table produto(
+	id int auto_increment primary key,
+    nome varchar(50) not null,
+    descricao varchar(500),
+    valor decimal(10,2),
+    peso varchar(10),
+    imagem varchar(255),
+    idCardapio int,
+    idGrupo int,
+    FOREIGN KEY (idCardapio) REFERENCES cardapio(id),
+    FOREIGN KEY (idGrupo) REFERENCES grupo(id)
+);
+
+create table Imagem(
+	id int auto_increment primary key,
+    titulo varchar(20),
+    imagem varchar(255),
+    carrossel int not null
+);
+
+create table Evento(
+	id int auto_increment primary key,
+    titulo varchar(50) not null,
+    dataInicio datetime,
+    dataFim datetime,
+    valor decimal(10,2),
+    descricao varchar(500),
+    imagem varchar(255)
+);
 ```
-- Busque novas alterações
+
+#### Configure as Variáveis de Ambiente
+Crie um arquivo .env se não tiver na raiz do projeto da API e adicione as seguintes variáveis de ambiente:
+```dotenv
+PORT=5000
+
+
+MYSQL_HOST=localhost
+MYSQL_USER=root
+MYSQL_PWD=Senha
+MYSQL_DB=NomeDatabase
 ```
-git merge nain
+Não se esqueça de alterar a senha e o nome da database para as correspondentes.
+### 4. Execute o servidor
+Execute o comando abaixo para ambos os arquivos API e front.
+```bash
+npm start
 ```
-Bibliotecas e arquivos pesados como a pasta nodemon_modules devem ficar em um arquivo **.gitignore**, mas lembre-se, sempre que for clonar o repositório para uma máquina diferente, terá que importar novamente as bibliotecas e arquivos pois não ficam salvos no gitHub.
+Ao executar o comando, o sistema vai retornar uma mensagem caso o servidor funcione:
+####BackEnd
+```bash
+Conexão com BD realizada
+API SUBIU!
+```
+####FrontEnd
+```bash
+webpack compiled successfully
+```
+Agora você poderá acessar o sistema em  http://localhost:3000 no seu navegador.
+
+## Demostração
+### LandingPage
+![landingPage](https://github.com/user-attachments/assets/5d3988b4-52f6-4c4b-84fd-ea17376e8888)
+### Login
+![Login](https://github.com/user-attachments/assets/770428e5-1a79-4759-99bd-fb3e6d5188e9)
+### Painel
+![painel1](https://github.com/user-attachments/assets/d1cff317-7505-4c21-88b2-6da0c2c478cf)
+![painel2](https://github.com/user-attachments/assets/e40361a7-4f8d-46c9-b856-3fe3e71de5f1)
+![Insert](https://github.com/user-attachments/assets/e27d85d3-5d7b-4f39-884a-57e7c557cb30)
