@@ -1,18 +1,23 @@
 import './index.scss';
-import axios from 'axios'
 
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+
+import { AiFillInstagram } from "react-icons/ai";
+import { IoLogoWhatsapp } from "react-icons/io";
+
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import { Link } from 'react-router-dom';
-import React, { useEffect, useState } from 'react';
 
-import Login from '../../Components/Login/Login';
-import CarrosselPrincipal from '../../Components/Carrossel/principal';
 import CarrosselFotos from '../../Components/Carrossel/fotos';
-// import dados from "../../apoio/banco.json";
 import CardsProdutos from '../../Components/CardProdutos/CardProdutos';
-import CarrosselCars from '../../Components/Carrossel/cards';
+import CarrosselCards from '../../Components/Carrossel/cards';
 import CardEvento from '../../Components/CardEvento/CardEvento';
+import Login from '../../Components/Login/Login';
+
+import { buscarImagem, buscarPorCardapio, buscarTodos } from '../../API/chamadas';
 
 
 const style = {
@@ -24,74 +29,50 @@ const style = {
 
 export default function Home() {
   const [produtos, setProdutos] = useState();
-  const [dadosSubcategorias, setDadosSubcategorias] = useState([]);
-  const [subcategorias, setSubcategorias] = useState([]);
-  const [produtosPorSubcategoria, setProdutosPorSubcategoria] = useState({});
-  const [eventos, setEventos] = useState({});
-  const [botaoSelecionado, setBotaoSelecionado] = useState(null);
+  const [cardapios, setCardapios] = useState([]);
+  const [eventos, setEventos] = useState([]);
+  const [imagens, setImagens] = useState([]);
+  const [carrosselPrincipal, setCarrosselPrincipal] = useState([]);
+  const [index, setIndex] = useState(0);
+
+
+  const handleChange = (event, newValue) => {
+    setIndex(newValue - 1);
+  };
+
+  const [botaoSelecionado, setBotaoSelecionado] = useState("");
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const imagens = [
-    { imagem: "/assets/img/croissant.jpg", titulo: "Croissant" },
-    { imagem: "/assets/img/gelato.jpg", titulo: "Gelato" },
-    { imagem: "/assets/img/panquecas.jpg", titulo: "Panquecas" }
-  ];
-  const imagens2 = ["/assets/img/croissant.jpg", "/assets/img/gelato.jpg", "/assets/img/panquecas.jpg", "/assets/img/croissant.jpg", "/assets/img/gelato.jpg", "/assets/img/panquecas.jpg"];
 
-  const handleBotaoClick = (cardapio) => {
-    setBotaoSelecionado(cardapio);
-    const produtosFiltrados = produtos.filter(produtos => produtos.nomeSubcategoria === cardapio);
-    setProdutosPorSubcategoria(produtosFiltrados);
+  const handleBotaoClick = async (cardapio) => {
+    setBotaoSelecionado(cardapio.nome);
+    const produtos = await buscarPorCardapio('produto', cardapio.id)
+    setProdutos(produtos);
   };
 
   useEffect(() => {
-
     async function fetchData() {
       try {
-        let eventos = await axios.get('http://127.0.0.1:5000/evento');
-        let info = eventos.data;
-        setEventos(info);
-
-        let produtos = await axios.get('http://127.0.0.1:5000/produto');
-        let infoProdutos = produtos.data;
-        setProdutos(infoProdutos);
-
-        const subcategoriasArray = [];
-        infoProdutos.forEach(item => {
-          if (!subcategoriasArray.includes(item.nomeSubcategoria)) {
-            subcategoriasArray.push(item.nomeSubcategoria);
-          }
-        });
-        setSubcategorias(subcategoriasArray);
-        setBotaoSelecionado(subcategoriasArray[0]);
-        const produtosFiltrados = infoProdutos.filter(infoProdutos => infoProdutos.nomeSubcategoria === subcategoriasArray[0]);
-        setProdutosPorSubcategoria(produtosFiltrados);
-        console.log(produtosFiltrados);
-
+        const eventos = await buscarTodos("evento")
+        setEventos(eventos);
+        let cardapios = await buscarTodos("cardapio");
+        setCardapios(cardapios);
+        let imagens = await buscarTodos("imagem/1")
+        setImagens(imagens);
+        let carrosselPrincipal = await buscarTodos("imagem/0")
+        setCarrosselPrincipal(carrosselPrincipal);
+        setBotaoSelecionado(cardapios[0].nome);
+        handleBotaoClick(cardapios[0])
       } catch (error) {
-        console.error('Erro ao buscar os dados:', error);
+        console.error('Erro ao buscar os dados HOME:', error);
       }
     }
-
     fetchData();
-  }, []);
+  }, [index]);
 
   return (
     <div className="pagina-home">
-
-      <header>
-        <div className='menu'>
-          <a href="#eventos">Eventos</a>
-          <a href="#cardapios">Cardápio</a>
-          <a href="">Sobre</a>
-          <a href="">Localização</a>
-        </div>
-        <div className='logo'><img src='/assets/img/logo circular.png'></img></div>
-        <div className='acessoAdm'>
-          <button onClick={handleOpen}>Acesso restrito</button>
-        </div>
-      </header>
 
       <Modal
         open={open}
@@ -104,43 +85,92 @@ export default function Home() {
         </Box>
       </Modal>
 
+      <header>
+        <div className='menu'>
+          <a href="#eventos">Eventos</a>
+          <a href="#cardapios">Cardápio</a>
+          <a href="#sobre">Sobre</a>
+          <a href="#maps">Localização</a>
+        </div>
+        <div className='logo'><img src='/assets/img/logo circular.png' alt='Logo circular ArtGula'></img></div>
+        <div className='acessoAdm'>
+          <button onClick={handleOpen}>Acesso restrito</button>
+        </div>
+      </header>
+
       <section className='painelPrincipal'>
-        <CarrosselPrincipal imagens={imagens} tipo="Painel Principal" />
+        <div className='carrosselPrincipal' style={{ backgroundImage: `url(${buscarImagem(carrosselPrincipal[index]?.imagem)})` }}>
+          <div className='displayCarrossel'>
+            <h1>
+              {carrosselPrincipal[index]?.titulo}
+            </h1>
+            <a style={{ backgroundColor: "#a97f2c", color: "#f6cabc" }} alt="Link para WhatsApp da loja" href="https://wa.me/+5511958655550">Faça seu pedido <IoLogoWhatsapp fontSize="2rem" /></a>
+            <a style={{ backgroundColor: "#f6cabc", color: "#a97f2c" }} alt="Link para Instagram da loja" href="https://www.instagram.com/art.gula/reels/">Siga a gente <AiFillInstagram fontSize="2rem" /></a>
+          </div>
+          <div className='btnSelecionar'>
+            <Stack spacing={0}>
+              <Pagination
+                count={carrosselPrincipal.length}
+                onChange={handleChange}
+                size="small"
+                hidePrevButton
+                hideNextButton
+                sx={{
+                  '& .MuiPaginationItem-root': {
+                    border: "2px solid #a97f2c",
+                    color: 'transparent',
+                  },
+                  '& .Mui-selected': {
+                    backgroundColor: '#FDE6E8'
+                  },
+                }}
+              />
+            </Stack>
+          </div>
+        </div>
       </section>
 
       <section className='eventos' id='eventos'>
         <h1>Eventos</h1>
-        <CarrosselCars produtosPorSubcategoria={eventos} componente={CardEvento}></CarrosselCars>
+        <div className='containerCards'>
+          <CarrosselCards dados={eventos} componente={CardEvento}></CarrosselCards>
+        </div>
       </section>
 
       <section className='cardapios' id='cardapios'>
         <div className='listaCardapios'>
           <div className='botoesLista'>
-            {subcategorias.map((cardapio, index) => (
+            {cardapios.map((cardapio, index) => (
               <button
                 key={index}
-                className={cardapio === botaoSelecionado ? 'selecionado' : ''}
+                className={cardapio.nome === botaoSelecionado ? 'selecionado' : ''}
                 onClick={() => handleBotaoClick(cardapio)}
               >
-                {cardapio}
+                {cardapio.nome}
               </button>
             ))}
           </div>
-          <a href='http://localhost:3000/cardapio'>VER CARDÁPIO <Link to={`./cardapio/${botaoSelecionado}`}>{botaoSelecionado}</Link> COMPLETO</a>
+          <Link to={`/cardapio/${botaoSelecionado}`}>Ver cardápio <strong>{botaoSelecionado}</strong> completo</Link>
         </div>
         <div className='carrosselCards'>
-          <CarrosselCars produtosPorSubcategoria={produtosPorSubcategoria} componente={CardsProdutos}></CarrosselCars>
+          <CarrosselCards dados={produtos} componente={CardsProdutos}></CarrosselCards>
         </div>
         <div>
         </div>
       </section>
+
       <section id='carrosselFotos'>
-        <CarrosselFotos imagens={imagens2} />
+        <CarrosselFotos imagens={imagens} />
       </section>
-      <section className='sobre'>
-        <img className='logo_artgula' src='/assets/img/tituloArtEGula.png'></img>
+
+      <section className='sobre' id='sobre'>
+        <div className='logo_artgula'>
+          <img src='/assets/img/tituloArtEGula.png' alt='logo principal loja'></img>
+        </div>
         <div className='conteudo_sobre'>
-          <img className='fotoDona' src='/assets/img/fotoDona.png'></img>
+          <div className='fotoDona'>
+            <img src='/assets/img/fotoDona.png' alt='foto da idealizadora da ArtGula sentada em frente a loja'></img>
+          </div>
           <p>Somos a Art & Gula, uma doceria e café localizada no
             charmoso bairro de Moema em São Paulo.
             Nossa loja foi pensada para proporcionar uma
@@ -154,27 +184,23 @@ export default function Home() {
             salgados congelados, que atendem o varejo e o atacado.</p>
         </div>
       </section>
+
       <section className='avaliacao'>
         <div>
-          <img className='avaliacaoImg' src='/assets/img/avaliacao1.png'></img>
-          <img className='avaliacaoImg' src='/assets/img/avaliacao2.png'></img>
+          <img className='avaliacaoImg' src='/assets/img/avaliacao1.png' alt='avaliações loja'></img>
+          <img className='avaliacaoImg' src='/assets/img/avaliacao2.png' alt='avaliações loja'></img>
+          <img className='avaliacaoImg' src='/assets/img/avaliacao3.png' alt='avaliações loja'></img>
         </div>
-        <img className='avaliacaoImg' src='/assets/img/avaliacao3.png'></img>
-        <img className='nota' src='/assets/img/nota.png'></img>
-
-
+        <img className='nota' src='/assets/img/nota.png' alt='nota google'></img>
       </section>
-      <section className='maps'>
 
-        <div className='googleMaps'>
-          <iframe
-            width="100%"
-            height="420"
-            src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Av.%20Jurema,%20401%20-%20Moema,%20S%C3%A3o%20Paulo%20-%20SP,%2004079-001+(Art&amp;Gula)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-          >
-            <a href="https://www.gps.ie/">gps systems</a>
-          </iframe>
-        </div>
+      <section className='maps'>
+        <iframe
+          title="Localização da ArtGula no Google Maps"
+          src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=Av.%20Jurema,%20401%20-%20Moema,%20S%C3%A3o%20Paulo%20-%20SP,%2004079-001+(Art&amp;Gula)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+        >
+          <a href="https://www.gps.ie/">gps systems</a>
+        </iframe>
         <p>Endereço: Av. Jurema, 401 - Moema,<br />
           São Paulo - SP, 04079-001<br />
           Telefone: (11) 95865-5550<br />
@@ -182,40 +208,41 @@ export default function Home() {
           Terça à Sexta: 10h - 19h<br />
           Sábado, Domingo e feriados: 9h - 19h
         </p>
-
-
       </section>
+
       <footer className='rodape'>
-        
-        <img className='logo_rodape' src='/assets/img/logo circular.png'></img>
+        <div className='logo_rodape'>
+          <img src='/assets/img/logo circular.png' alt='logo circular ArtGula'></img>
+        </div>
+
+
         <div className='item_rodape'>
           <div >
-            <h4>Produtos</h4>
+            <h4>Cardápios</h4>
             <ul>
-              <li><a href='#'>Páscoa</a></li>
-              <li><a href='#'>Bebidas</a></li>
-              <li><a href='#'>Doceria</a></li>
-              <li><a href='#'>Brunch</a></li>
-              <li><a href='#'>Cardapios</a></li>
+              {cardapios.map((cardapio, index) => (
+                <li key={index}>
+                  <a href={`./cardapio/${cardapio.nome}`}>{cardapio.nome}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div >
-            <h4>local</h4>
+            <h4>Informações</h4>
             <ul>
-              <li><a href='#'>Sobre a gente</a></li>
-              <li><a href='#'>iFood</a></li>
-              <li><a href='#'>WhatsApp</a></li>
-              <li><a href='#'>Equipe</a></li>
-              <li><a href='#'>Contate a gente</a></li>
+              <li><a href='#sobre'>Sobre a gente</a></li>
+              <li><a href='https://www.ifood.com.br/delivery/sao-paulo-sp/art--gula-doceria-indianopolis/6e026fd8-8268-493d-bd1b-6f0daa6aa6b2?utm_medium=share'>iFood</a></li>
+              <li><a href='https://wa.me/+5511958655550'>WhatsApp</a></li>
+              <li><a href='https://g.page/artgulamoema/review?gm'>Avaliações</a></li>
+              <li><a href='artgulacontato@gmail.com'>Contate a gente</a></li>
             </ul>
           </div>
 
         </div>
       </footer>
 
-
-    </div>
+    </div >
   );
 }
 

@@ -1,43 +1,49 @@
 import './index.scss';
-import axios from 'axios';
+import React, { useState } from 'react';
 import { AiFillHome } from "react-icons/ai";
 import { MdOutlineMenuBook } from "react-icons/md";
-import Tela_Info_Painel from '../../Components/TelaInfoPainel/TelaInfoPainel.js';
-import React, { useEffect, useState } from 'react';
+import { FaPlus } from "react-icons/fa6";
+import ModalCardapio from '../../Components/ModalCardapio/index.js';
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import TabelasCardapio from '../../Components/TelaInfoPainel/TabelasCardapio.js';
+import Tabelaspainel from '../../Components/TelaInfoPainel/TabelasPainel.js';
+
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: "40%",
+    transform: 'translate(-30%, -50%)'
+};
 
 export default function Painel() {
-    const [selectedItem, setSelectedItem] = useState("Cardápio");
-    const [categorias, setCategorias] = useState(["Eventos", "Fotos"]);
-    const [cardapios, setCardapios] = useState([]);
-    const [selectedArray, setSelectedArray] = useState(cardapios);
+    const [selectedItem, setSelectedItem] = useState("Painel de Controle");
+    const [componente, setComponente] = useState();
+    const [open, setOpen] = useState(false);
+    const handleClose = () => setOpen(false);
+
+    const handleOpen = (info, componente, id, tipo) => {
+        const teste = React.createElement(componente, { info: info, handleClose: handleClose, id: id, tipo: tipo });
+        setComponente(teste);
+        setOpen(true);
+    };
 
     const handleSelectItem = (item) => {
         setSelectedItem(item);
-        let escolha = [];
-        escolha = selectedItem === 'Cardápio' ? categorias : cardapios;
-        setSelectedArray(escolha);
-        console.log(escolha);
     };
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                let listaCardapios = await axios.get('http://127.0.0.1:5000/subcategorias/categoria/7');
-                const nomeSubcategorias = listaCardapios.data.map(item => item.nomeSubcategoria);
-                console.log(nomeSubcategorias);
-                setCardapios(nomeSubcategorias);
-            } catch (error) {
-                console.error('Erro ao buscar os dados:', error);
-            }
-        }
-        fetchData();
-    }, [])
-
-
-
-    //visibility: params.titulo === "Cardápio" ? 'visible' : 'hidden'
     return (
-        <main className='telaPianel'>
+        <main className='telaPainel'>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+            >
+                <Box sx={style}>
+                    {componente}
+                </Box>
+            </Modal>
             <section className='toolBar'>
                 <div className='logo'>
                     <img src={'/assets/img/logo circular.png'} alt="Logo da loja" width="145" height="145" />
@@ -55,7 +61,20 @@ export default function Painel() {
                     </nav>
                 </div>
             </section>
-            <Tela_Info_Painel titulo={selectedItem} vetor={selectedArray}></Tela_Info_Painel>
+
+            <section className='telaInfo'>
+
+                <h1 className='titulo'>{selectedItem}</h1>
+                <button className='addCardapio add'
+                    style={{ visibility: selectedItem === "Cardápio" ? 'visible' : 'hidden' }}
+                    onClick={() => handleOpen(null, ModalCardapio, null, "salvar")}
+                >
+                    <FaPlus />
+                    Adicionar Cardápio
+                </button>
+                {selectedItem === "Cardápio" && <TabelasCardapio/>}
+                {selectedItem === "Painel de Controle" && <Tabelaspainel/>}
+            </section>
         </main>
     )
 }

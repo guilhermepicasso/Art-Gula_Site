@@ -8,13 +8,12 @@
         padding: 0 32px;
         justify-content: space-between;
         align-items: center;
-        font-family: "Goud Old";
+        font-family: "Goudy Old Style";
         font-size: 18px;
 
         a {
             text-decoration: none;
             color: var(--cor-cinza-texto);
-
             align-content: center;
         }
 
@@ -52,15 +51,73 @@
         }
     }
 
-    section {
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+    .painelPrincipal{
+        height: 90vh;
+
+        .carrosselPrincipal {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+    
+            width: 85%;
+            height: 70%;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            align-items: center;
+            border-radius: 18px;
+            overflow: hidden;
+    
+            .btnSelecionar {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                gap: 1vw;
+                padding: 1vw;
+                z-index: 3;
+            }
+    
+            .displayCarrossel {
+                display: flex;
+                flex-direction: column;
+                gap: 1vw;
+                margin-right: 2vw;
+                align-items: end;
+                width: 100%;
+                z-index: 2;
+    
+                h1 {
+                    font-size: 6rem;
+                    color: var(--cor-dourado);
+                    font-family: "Harrigton";
+                    margin-bottom: 0;
+                }
+    
+                a {
+                    display: flex;
+                    gap: 16px;
+                    border: none;
+                    width: fit-content;
+                    border-radius: 90px;
+                    padding: 8px 18px;
+                    font-family: "Goudy Old Style";
+                    font-size: 1.2rem;
+                    align-items: center;
+                    text-decoration: none;
+                }
+            }
+        }
     }
 
+
     .eventos {
+        display: flex;
+        height: fit-content;
+        padding: 10% 0;
+        flex-direction: column;
+        max-width: 100%;
+        gap: 5vw;
+
         h1 {
             margin-top: 0;
             margin-bottom: -1rem;
@@ -71,6 +128,15 @@
         }
     }
 
+    section {
+        max-width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
     .cardapios {
         display: flex;
         gap: 22px;
@@ -79,9 +145,9 @@
         .listaCardapios {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 2vw;
             width: 85%;
-            font-family: "Goud Old";
+            font-family: "Goudy Old Style";
             font-size: 24px;
             color: var(--cor-dourado);
             text-align: center;
@@ -97,13 +163,14 @@
                 display: flex;
                 width: 100%;
 
+
                 button {
                     background-color: transparent;
                     border: none;
                     border-radius: 90px;
                     width: 100%;
                     padding: 12px 0;
-                    font-family: "Goud Old";
+                    font-family: "Goudy Old Style";
                     color: var(--cor-dourado);
                     font-size: 24px;
                     text-transform: uppercase;
@@ -124,6 +191,7 @@
             display: flex;
             justify-content: center;
             width: 100%;
+            height: 70%;
         }
     }
 
@@ -131,72 +199,80 @@
         display: flex;
         flex-direction: column;
         background-color: #F6CABC;
-        width: 100%;
-        height: 750px;
-        gap: 36px;
+        padding: 18px 120px;
+
+        .logo_artgula {
+            width: 30%;
+
+            img {
+                width: 100%;
+            }
+        }
 
         .conteudo_sobre {
             display: flex;
-            flex-direction: row;
-            padding: 24px 120px;
             align-items: center;
+            justify-content: center;
             gap: 70px;
+
+            .fotoDona {
+                height: 90%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+            }
+
+            p {
+                color: var(--cor-dourado);
+                font-family: "Playfair";
+                font-size: 1.5rem;
+                width: 60%;
+            }
         }
 
-        .conteudo_sobre>p {
-            color: var(--cor-dourado);
-            font-family: "Playfair";
-            line-height: 50px;
-            font-size: 24px;
-        }
-
-        .logo_artgula {
-            width: 460px;
-            height: 109px;
-
-        }
-
-        .fotoDona {
-            width: 360px;
-            height: 457px;
-        }
     }
 
     .maps {
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: center;
         gap: 100px;
-        width: 100%;
-        height: 550px;
         background-color: #ffffff;
-        padding: 60px 120px;
-        
+        padding: 0 120px;
 
-        .googleMaps {
+        iframe {
             width: 100%;
-            max-width: 650px;
-            height: 420px;
-        }
-
-        .googleMaps>iframe {
+            height: 50%;
             border: 5px solid var(--cor-dourado);
             border-radius: 10px;
         }
 
         p {
+            width: 60%;
             color: var(--cor-dourado);
             font-family: "Playfair";
             line-height: 50px;
-            font-size: 18px;
+            font-size: 1.6vw;
         }
     }
 
     .avaliacao {
         display: flex;
         flex-direction: column;
-        width: 100%;
         height: 550px;
         gap: 30px;
+
+        div{
+            display: flex;
+            width: 80%;
+            justify-content: center;
+            flex-wrap:wrap;
+        }
 
         .nota {
             width: 302px;
@@ -204,26 +280,28 @@
 
         }
 
+        div {
+            display: flex;
+            flex-direction: row;
+            gap: 30px;
+    
+        }
     }
 
-    .avaliacao>div {
-        display: flex;
-        flex-direction: row;
-        gap: 30px;
-
-    }
 
     .rodape {
         display: flex;
-        width: 100%;
-        height: 270px;
+        height: 30vh;
         background-color: #5F5F5F;
         align-items: center;
         padding: 20px 120px;
 
         .logo_rodape {
-            width: 218px;
-            height: 186px;
+            width: 10%;
+
+            img {
+                width: 100%;
+            }
         }
 
         .item_rodape {
@@ -232,7 +310,7 @@
             margin-right: 100px;
             gap: 100px;
 
-            h4{
+            h4 {
                 font-size: 20px;
                 font-family: "Playfair";
                 line-height: 50px;
